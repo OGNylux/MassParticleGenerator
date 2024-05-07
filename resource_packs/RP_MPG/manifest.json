@@ -1,0 +1,19 @@
+{
+    "format_version": 2,
+    "header": {
+        "name": "pack.name",
+        "description": "pack.description",
+        "uuid": "a45dbce1-a44e-40a8-b7e2-a628d87dd6df",
+        "version": [1, 0, 0],
+        "min_engine_version": [1, 20, 80]
+    },
+    "modules": [{
+            "type": "resources",
+            "uuid": "45db1e9b-80b1-4bfc-9dfb-0f22413b39be",
+            "version": [1, 0, 0]
+        }
+    ],
+    "metadata": {
+        "authors": [ "Pixelbiester", "Nylux" ]
+    }
+}

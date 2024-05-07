@@ -1,0 +1,20 @@
+{
+    "format_version": "1.20.0",
+    "minecraft:client_entity": {
+      "description": {
+        "identifier": "pb:fog",
+        "materials": {
+          "default": "entity_alphatest"
+        },
+        "geometry": {
+          "default": "geometry.fog"
+        },
+        "textures": {
+          "default": "textures/entity/fog"
+        },
+        "render_controllers": [
+          "controller.render.fog"
+        ]
+      }
+    }
+  }

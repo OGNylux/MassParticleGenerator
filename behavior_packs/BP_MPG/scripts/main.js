@@ -12,8 +12,10 @@ let stop = false;
 system.afterEvents.scriptEventReceive.subscribe((event) => {
 	const {id, sourceEntity, message} = event;
 	if(id === "pb:pos1") setFirstPosition(sourceEntity, message);
-	if(id === "pb:pos2") setSecondPosition(sourceEntity, message);
-	if(id === "pb:test") test(sourceEntity);
+	else if(id === "pb:pos2") setSecondPosition(sourceEntity, message);
+	else if(id === "pb:test") test(sourceEntity);
+	else if(id === "pb:show") showBoxes(sourceEntity, message);
+	else if(id === "pb:update") updateParticles(sourceEntity, message);
 })
 
 function setFirstPosition(player, message) { 
@@ -52,14 +54,44 @@ function test(player) {
 	const tpSpacingX = Math.floor(Math.abs(secondPosition.x - firstPosition.x) / entitySpacing);
 	const tpSpacingZ = Math.floor(Math.abs(secondPosition.z - firstPosition.z) / entitySpacing);
 	
-	savedLocation = player.location
+	savedLocation = player.location;
 	counter = 0;
 	stop = false;
 
-	mpg_algorithm(player, tpSpacingX, tpSpacingZ);
+	mpg_algorithm(player, tpSpacingX, tpSpacingZ, spawnEntity(player));
 }
 
-async function mpg_algorithm(player, maxX, maxZ) {
+function showBoxes(player) {
+	if(message) {
+		const substrings = message.split(' ');
+		if(substrings[0] === "radius") {
+			if(substrings[1] <= 90) {
+				showBoxEvent(player, substrings[1])
+			} else {
+				world.sendMessage("Radius too large!")
+			}
+		} else if(substrings[0] === "box") {
+			const tpSpacingX = Math.floor(Math.abs(secondPosition.x - firstPosition.x) / entitySpacing);
+			const tpSpacingZ = Math.floor(Math.abs(secondPosition.z - firstPosition.z) / entitySpacing);
+			mpg_algorithm(player, tpSpacingX, tpSpacingZ, showBoxEvent(player));
+		} else {
+			world.sendMessage("No selection method given");
+		}
+	}
+}
+
+function showBoxEvent(player, radius) {
+	const entities = player.dimension.getEntities({
+		location: player.location,
+		maxDistance: radius
+	});
+
+	entities.forEach(entity => {
+		entity.triggerEvent('evt:show_box');
+	});
+}
+
+async function mpg_algorithm(player, maxX, maxZ, func) {
 	const directionX = checkDirection(firstPosition.x, secondPosition.x);
 	const directionZ = checkDirection(firstPosition.z, secondPosition.z);
 
@@ -76,7 +108,7 @@ async function mpg_algorithm(player, maxX, maxZ) {
 				fadeOutDuration: 0,
 				subtitle: "use !stop to stop MGP"
 			});
-			spawnEntity(player);
+			func;
 			await sleep(5);
             player.teleport({x: player.location.x + directionX * entitySpacing, y: player.location.y, z: player.location.z});
 		
@@ -87,7 +119,10 @@ async function mpg_algorithm(player, maxX, maxZ) {
 }
 
 function spawnEntity(player) {
-	for(let i = 0; i < worldHeight; i+=entitySpacing) {
+	const minY = Math.min(firstPosition.y, secondPosition.y);
+	const maxY = Math.max(firstPosition.y, secondPosition.y);
+
+	for(let i = minY; i < maxY; i+=entitySpacing) {
 		world.getDimension("overworld").spawnEntity("pb:fog", {x: player.location.x, y: i, z: player.location.z});
 		world.sendMessage(`successfully spawned entity at ${player.location.x}, ${i}, ${player.location.z}`);
 	}
@@ -98,6 +133,13 @@ function checkDirection(x, y) {
 	if(result < 0) return -1;
 	return 1;
 }
+
+function isBetween(num, a, b, inclusive) {
+	const min = Math.min(a, b);
+	const max = Math.max(a, b);
+  
+	return inclusive ? num >= min && num <= max : num > min && num < max;
+  }
 
 function sleep(ticks) {
     return new Promise(resolve => {

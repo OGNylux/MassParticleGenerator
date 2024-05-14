@@ -6,7 +6,7 @@
          "materials": [ { "*": "Material.default" } ],
          "textures": [ "Texture.default" ],
          "part_visibility": [
-           { "fog": "query.is_tamed" }
+          { "fog": "query.is_tamed"}
          ]
        }
     }

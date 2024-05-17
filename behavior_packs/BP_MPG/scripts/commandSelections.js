@@ -1,5 +1,6 @@
 import { world } from "@minecraft/server"
 import { firstPosition, secondPosition, entitySpacing, maxRadius } from "./globalVariables";
+import { isBetween } from "./utilityFunctions";
 
 function command(player, message, event) {
 	if(message) {

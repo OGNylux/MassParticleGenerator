@@ -1,17 +1,32 @@
 import { world, system } from "@minecraft/server"
 import { firstPosition, secondPosition, savedLocation, entitySpacing } from "./globalVariables";
+import { checkDirection, sleep } from "./utilityFunctions";
 
 let counter = 0;
 let stop = false;
 
 system.afterEvents.scriptEventReceive.subscribe((event) => {
 	const {id, sourceEntity, message} = event;
-	if(id === "pb:pos1") setFirstPosition(sourceEntity, message);
-	else if(id === "pb:pos2") setSecondPosition(sourceEntity, message);
-	else if(id === "pb:test") test(sourceEntity);
-	else if(id === "pb:show") toggleBoxes(sourceEntity, message, "evt:show_box");
-	else if(id === "pb:hide") toggleBoxes(sourceEntity, message, "evt:hide_box");
-	else if(id === "pb:update") updateParticles(sourceEntity, message);
+	switch(id) {
+		case "pb:pos1":
+			setFirstPosition(sourceEntity, message);
+			break;
+		case "pb:pos2":
+			setSecondPosition(sourceEntity, message);
+			break;
+		case "pb:test":
+			test(sourceEntity);
+			break;
+		case "pb:show":
+			toggleBoxes(sourceEntity, message, "evt:show_box");
+			break;
+		case "pb:hide":
+			toggleBoxes(sourceEntity, message, "evt:hide_box");
+			break;
+		case "pb:update":
+			updateParticles(sourceEntity, message);
+			break;
+	}
 })
 
 function setFirstPosition(player, message) { 
@@ -57,58 +72,6 @@ function test(player) {
 	mpg_algorithm(player, tpSpacingX, tpSpacingZ, (x,z) => {spawnEntity(player, x, z)});
 }
 
-function toggleBoxes(player, message, event) {
-	if(message) {
-		const substrings = message.split(' ');
-		if(substrings[0] === "radius") {
-			if(substrings[1] <= 90) {
-				toggleBoxEvent(player, parseInt(substrings[1]), false, event);	
-			} else {
-				world.sendMessage("Radius too large!");
-			}
-		} else if(substrings[0] === "area") {
-			const tpSpacingX = Math.floor(Math.abs(secondPosition.x - firstPosition.x) / entitySpacing);
-			const tpSpacingZ = Math.floor(Math.abs(secondPosition.z - firstPosition.z) / entitySpacing);
-
-			mpg_algorithm(player, tpSpacingX, tpSpacingZ, () => {toggleBoxEvent(player, 16, true, event)});
-		} else if(substrings[0] === "column") {
-			const nearestEntity = player.dimension.getEntities({
-				type: "pb:fog",
-				location: player.location,
-				closest: 1,
-				maxDistance: 16
-			})[0];
-
-			player.dimension.getEntities({
-				type: "pb:fog"
-			})
-			.forEach(entity => {
-				if(entity.getDynamicProperty("tablePositionX") === nearestEntity.getDynamicProperty("tablePositionX") && entity.getDynamicProperty("tablePositionZ") === nearestEntity.getDynamicProperty("tablePositionZ")) {
-					entity.triggerEvent(mode);
-				}
-			});
-		} else {
-			world.sendMessage("No selection method given");
-		}
-	}
-}
-
-function toggleBoxEvent(player, radius, box = false, event) {
-	player.dimension.getEntities({
-		type: "pb:fog",
-		location: player.location,
-		maxDistance: radius
-	}).forEach(entity => {
-		if(box) {
-			if(isBetween(entity.location, firstPosition, secondPosition)) {
-				entity.triggerEvent(event);
-			}
-		} else {
-			entity.triggerEvent(event);
-		}
-	});
-}
-
 async function mpg_algorithm(player, maxX, maxZ, func) {
 	const directionX = checkDirection(firstPosition.x, secondPosition.x);
 	const directionZ = checkDirection(firstPosition.z, secondPosition.z);
@@ -146,35 +109,4 @@ function spawnEntity(player, x, z) {
 		entity.setDynamicProperty("tablePositionX", x);
 		entity.setDynamicProperty("tablePositionZ", z);
 	}
-}
-
-function checkDirection(x, y) {
-	const result = y - x;	
-	if(result < 0) return -1;
-	return 1;
-}
-
-const isBetween = (entityLocation, firstLocation, secondLocation) => {
-	world.sendMessage(`entityLocationx: ${entityLocation.x}, firstLocation: ${firstLocation.x}, secondLocation: ${secondLocation.x}`);
-	world.sendMessage(`entityLocationz: ${entityLocation.z}, firstLocation: ${firstLocation.z}, secondLocation: ${secondLocation.z}`);
-	world.sendMessage(`entityLocationy: ${entityLocation.y}, firstLocation: ${firstLocation.y}, secondLocation: ${secondLocation.y}`);
-	return entityLocation.x.between(firstLocation.x, secondLocation.x, true) && entityLocation.z.between(firstLocation.z, secondLocation.z, true) && entityLocation.y.between(firstLocation.y, secondLocation.y, true);
-}
-
-Number.prototype.between = function(a, b, inclusive) {
-  let min = Math.min(a, b),
-      max = Math.max(a, b);
-
-  return inclusive ? this >= min && this <= max : this > min && this < max;
-}
-
-function sleep(ticks) {
-    return new Promise(resolve => {
-        system.run(function runnable() {
-            if (ticks-- > 0)
-                system.run(runnable);
-            else
-                resolve();
-        })
-    })
 }

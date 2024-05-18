@@ -1,8 +1,8 @@
 import { world } from "@minecraft/server"
-import { firstPosition, secondPosition, entitySpacing, maxRadius } from "./globalVariables";
+import { massParticleGenerator } from "./data";
 import { isBetween } from "./utilityFunctions";
 
-function command(player, message, event) {
+export function command(player, message, event) {
 	if(message) {
 		const substrings = message.split(' ');
 		if(substrings[0] === "radius") {
@@ -18,13 +18,18 @@ function command(player, message, event) {
 }
 
 function radiusSelection(player, radius, event, box = false) {
-    if(radius <= maxRadius) {
+    const firstPosition = massParticleGenerator.getFirstPosition();
+    const secondPosition = massParticleGenerator.getSecondPosition();
+    world.sendMessage("Radius: " + event);
+
+    if(radius <= massParticleGenerator.maxRadius) {
+        if(box) radius = 512;
         player.dimension.getEntities({
             type: "pb:fog",
             location: player.location,
             maxDistance: radius
         }).forEach(entity => {
-            if(box) if(isBetween(entity.location, firstPosition, secondPosition)) entity.triggerEvent(event);
+            if(box) {if(isBetween(entity.location, firstPosition, secondPosition)) entity.triggerEvent(event);}
             else entity.triggerEvent(event);
         });
     } else {
@@ -33,10 +38,14 @@ function radiusSelection(player, radius, event, box = false) {
 }
 
 function areaSelection(player, event) {
+    const firstPosition = massParticleGenerator.getFirstPosition();
+    const secondPosition = massParticleGenerator.getSecondPosition();
+    const entitySpacing = massParticleGenerator.getEntitySpacing();
+
     const tpSpacingX = Math.floor(Math.abs(secondPosition.x - firstPosition.x) / entitySpacing);
     const tpSpacingZ = Math.floor(Math.abs(secondPosition.z - firstPosition.z) / entitySpacing);
 
-    mpg_algorithm(player, tpSpacingX, tpSpacingZ, () => { radiusSelection(player, 16, event, true) });
+    massParticleGenerator.mpg_algorithm(player, tpSpacingX, tpSpacingZ, () => { radiusSelection(player, 160, event, true) });
 }
 
 function columnSelection(player, event) {

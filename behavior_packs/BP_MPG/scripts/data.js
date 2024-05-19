@@ -1,8 +1,9 @@
 import { system } from "@minecraft/server"
 
-let counter = 0;
+let counter = 1;
 
 class MassParticleGenerator {
+    fogEntity = "pb:biome_detector"
     firstPosition = {};
     secondPosition = {};
     savedLocation = {};
@@ -11,7 +12,7 @@ class MassParticleGenerator {
     stop = false;
     
     async mpg_algorithm(player, maxX, maxZ, func) {
-        counter = 0;
+        counter = 1;
         this.stop = false;
 
         const directionX = checkDirection(this.firstPosition.x, this.secondPosition.x);
@@ -40,6 +41,10 @@ class MassParticleGenerator {
             player.teleport({x: player.location.x - directionX * (this.entitySpacing * maxX), y: yPosition, z: player.location.z + directionZ * this.entitySpacing});	
         }
         player.teleport(this.savedLocation);
+    }
+
+    getFogEntity() {
+        return this.fogEntity;
     }
 
     getFirstPosition() {

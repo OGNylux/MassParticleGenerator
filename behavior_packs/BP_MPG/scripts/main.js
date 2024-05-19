@@ -1,16 +1,17 @@
-import { world, system } from "@minecraft/server"
+import { world, system, MolangVariableMap } from "@minecraft/server"
 import { massParticleGenerator } from "./data";
-import { command } from "./commandSelections";
+import { commandSelections } from "./commandSelections";
 import { spawnEntity } from "./utilityFunctions";
 
 let commands = {};
 
 commands['pb:pos1'] = function(player, message) { setFirstPosition(player, message); };
 commands['pb:pos2'] = function(player, message) { setSecondPosition(player, message); };
-commands['pb:test'] = function(player, message) { test(player); };
-commands['pb:show'] = function(player, message) { command(player, message, "evt:show_box"); };
-commands['pb:hide'] = function(player, message) { command(player, message, "evt:hide_box"); };
+commands['pb:start'] = function(player, message) { setup(player, message); };
+commands['pb:show'] = function(player, message) { commandSelections(player, message, "show"); };
+commands['pb:hide'] = function(player, message) { commandSelections(player, message, "hide"); };
 commands['pb:update'] = function(player, message) { updateParticles(player, message); };
+commands['pb:drawCube'] = function(player, message) { drawCube(player, message);};
 
 system.afterEvents.scriptEventReceive.subscribe((event) => {
 	const {id, sourceEntity, message} = event;
@@ -44,15 +45,15 @@ function setSecondPosition(player, message) {
 			return;
 		}
 		massParticleGenerator.setSecondPosition({x: Math.round(parseInt(substrings[0])), y: Math.round(parseInt(substrings[1])), z: Math.round(parseInt(substrings[2]))});
-		world.sendMessage(`First position set to ${massParticleGenerator.getSecondPosition().x}, ${massParticleGenerator.getSecondPosition().y}, ${massParticleGenerator.getSecondPosition().z}`);
+		world.sendMessage(`Second position set to ${massParticleGenerator.getSecondPosition().x}, ${massParticleGenerator.getSecondPosition().y}, ${massParticleGenerator.getSecondPosition().z}`);
 		return;
 	}
 
 	massParticleGenerator.setSecondPosition({x: Math.round(player.location.x), y: Math.round(player.location.y), z: Math.round(player.location.z)});
-	world.sendMessage(`First position set to ${massParticleGenerator.getSecondPosition().x}, ${massParticleGenerator.getSecondPosition().y}, ${massParticleGenerator.getSecondPosition().z}`);
+	world.sendMessage(`Second position set to ${massParticleGenerator.getSecondPosition().x}, ${massParticleGenerator.getSecondPosition().y}, ${massParticleGenerator.getSecondPosition().z}`);
 }
 
-function test(player) {
+function setup(player) {
 	const firstPosition = massParticleGenerator.getFirstPosition();
 	const secondPosition = massParticleGenerator.getSecondPosition();
 	const entitySpacing = massParticleGenerator.getEntitySpacing();
@@ -62,4 +63,30 @@ function test(player) {
 	
 	massParticleGenerator.setSavedLocation(player.location);
 	massParticleGenerator.mpg_algorithm(player, tpSpacingX, tpSpacingZ, (x,z) => {spawnEntity(player, x, z)});
+}
+
+function drawCube(entity, radiusString) {
+	const radius = parseFloat(radiusString);
+
+	spawnParticle(entity, radius, 0, -radius, 0, 'pb:square_marker');
+	spawnParticle(entity, radius, 0, radius, 0, 'pb:square_marker');
+
+	spawnParticle(entity, radius, radius, 0, 0, 'pb:square_marker_vertical', 90);
+	spawnParticle(entity, radius, -radius, 0, 0, 'pb:square_marker_vertical', 90);
+	spawnParticle(entity, radius, 0, 0, radius, 'pb:square_marker_vertical');
+	spawnParticle(entity, radius, 0, 0, -radius, 'pb:square_marker_vertical');
+}
+
+function spawnParticle(entity, radius, offsetX, offsetY, offsetZ, particleType, angle = 0) {
+	const dimension = world.getDimension(entity?.dimension.id);
+	const variableMap = new MolangVariableMap();
+	const offset = radius === 0.5 ? 0.5 : 0;
+	const location = {x: entity.location.x, y: entity.location.y + offset, z: entity.location.z};
+
+    variableMap.setFloat('variable.radius', radius);
+    variableMap.setFloat('variable.offset_x', offsetX);
+    variableMap.setFloat('variable.offset_y', offsetY);
+    variableMap.setFloat('variable.offset_z', offsetZ);
+    variableMap.setFloat('variable.angle', angle);
+    dimension.spawnParticle(particleType, location, variableMap);
 }

@@ -9,10 +9,23 @@
         },
         "component_groups": {
             "pb:show_box": {
-                "minecraft:is_tamed": {},
-                "minecraft:collision_box": {
-                    "width": 1.0,
-                    "height": 1.0
+                "minecraft:timer": {
+                    "time": 9,
+                    "looping": true,
+                    "time_down_event": {
+                        "event": "evt:draw_hitbox",
+                        "target": "self"
+                    }
+                }
+            },
+            "pb:show_radius": {
+                "minecraft:timer": {
+                    "time": 9,
+                    "looping": true,
+                    "time_down_event": {
+                        "event": "evt:draw_outline",
+                        "target": "self"
+                    }
                 }
             }
         },
@@ -36,6 +49,9 @@
         },
         "events": {
             "evt:show_box": {
+                "queue_command": {
+                    "command": [ "scriptevent pb:drawCube 0.5" ]
+                },
                 "add": {
                     "component_groups": [
                         "pb:show_box"
@@ -47,6 +63,33 @@
                     "component_groups": [
                         "pb:show_box"
                     ]
+                }
+            },
+            "evt:show_radius": {
+                "queue_command": {
+                    "command": [ "scriptevent pb:drawCube 16" ]
+                },
+                "add": {
+                    "component_groups": [
+                        "pb:show_radius"
+                    ]
+                }
+            },
+            "evt:hide_radius": {
+                "remove": {
+                    "component_groups": [
+                        "pb:show_radius"
+                    ]
+                }
+            },
+            "evt:draw_outline": {
+                "queue_command": {
+                    "command": [ "scriptevent pb:drawCube 16" ]
+                }
+            },
+            "evt:draw_hitbox": {
+                "queue_command": {
+                    "command": [ "scriptevent pb:drawCube 0.5" ]
                 }
             }
         }

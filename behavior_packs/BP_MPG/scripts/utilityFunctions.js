@@ -10,7 +10,7 @@ export function spawnEntity(player, x, z) {
 	const maxY = Math.max(firstPosition.y, secondPosition.y);
 
 	for(let i = minY; i < maxY; i+=entitySpacing) {
-		const entity = world.getDimension("overworld").spawnEntity("pb:fog", {x: player.location.x, y: i, z: player.location.z});
+		const entity = world.getDimension("overworld").spawnEntity(massParticleGenerator.getFogEntity(), {x: player.location.x, y: i, z: player.location.z});
 		entity.setDynamicProperty("tablePositionX", x);
 		entity.setDynamicProperty("tablePositionZ", z);
 	}

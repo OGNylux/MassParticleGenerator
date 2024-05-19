@@ -2,39 +2,35 @@ import { world } from "@minecraft/server"
 import { massParticleGenerator } from "./data";
 import { isBetween } from "./utilityFunctions";
 
-export function command(player, message, event) {
-	if(message) {
-		const substrings = message.split(' ');
-		if(substrings[0] === "radius") {
-            radiusSelection(player, parseInt(substrings[1]), event);
-		} else if(substrings[0] === "area") {
-            areaSelection(player, event);
-		} else if(substrings[0] === "column") {
-            columnSelection(player, event);
-		} else {
-			world.sendMessage("No selection method given");
-		}
-	}
+export function commandSelections(player, message, mode) {
+    const substrings = message.split(' ');
+    if(substrings[0] === "hitbox") command(player, substrings[1], `evt:${mode}_box`, parseInt(substrings[2]));
+    else if(substrings[0] === "outline") command(player, substrings[1], `evt:${mode}_radius`, parseInt(substrings[2]));
+}
+
+function command(player, mode, event, radius = 0) {
+    if(mode === "radius") radiusSelection(player, radius, event);
+    else if(mode === "area") areaSelection(player, event);
+    else if(mode === "column") columnSelection(player, event);
+    else world.sendMessage("No selection method given");
 }
 
 function radiusSelection(player, radius, event, box = false) {
     const firstPosition = massParticleGenerator.getFirstPosition();
     const secondPosition = massParticleGenerator.getSecondPosition();
-    world.sendMessage("Radius: " + event);
 
     if(radius <= massParticleGenerator.maxRadius) {
         if(box) radius = 512;
+        world.sendMessage("Selecting entities...");
         player.dimension.getEntities({
-            type: "pb:fog",
+            type: massParticleGenerator.getFogEntity(),
             location: player.location,
             maxDistance: radius
         }).forEach(entity => {
             if(box) {if(isBetween(entity.location, firstPosition, secondPosition)) entity.triggerEvent(event);}
-            else entity.triggerEvent(event);
+            else entity.triggerEvent(event); world.sendMessage("Selection complete!");
         });
-    } else {
-        world.sendMessage("Radius too large!");
-    }
+    } else world.sendMessage("Radius too large!");
 }
 
 function areaSelection(player, event) {
@@ -45,19 +41,20 @@ function areaSelection(player, event) {
     const tpSpacingX = Math.floor(Math.abs(secondPosition.x - firstPosition.x) / entitySpacing);
     const tpSpacingZ = Math.floor(Math.abs(secondPosition.z - firstPosition.z) / entitySpacing);
 
+	massParticleGenerator.setSavedLocation(player.location);
     massParticleGenerator.mpg_algorithm(player, tpSpacingX, tpSpacingZ, () => { radiusSelection(player, 160, event, true) });
 }
 
 function columnSelection(player, event) {
     const nearestEntity = player.dimension.getEntities({
-        type: "pb:fog",
+        type: massParticleGenerator.getFogEntity(),
         location: player.location,
         closest: 1,
         maxDistance: 16
     })[0];
 
     player.dimension.getEntities({
-        type: "pb:fog"
+        type: massParticleGenerator.getFogEntity()
     })
     .forEach(entity => {
         if(entity.getDynamicProperty("tablePositionX") === nearestEntity.getDynamicProperty("tablePositionX") && entity.getDynamicProperty("tablePositionZ") === nearestEntity.getDynamicProperty("tablePositionZ")) {

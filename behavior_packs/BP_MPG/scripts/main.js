@@ -1,16 +1,17 @@
 import { world, system, MolangVariableMap } from "@minecraft/server"
 import { massParticleGenerator } from "./data";
-import { commandSelections } from "./commandSelections";
+import { commandSelections, command } from "./commandSelections";
 import { spawnEntity } from "./utilityFunctions";
 
 let commands = {};
 
 commands['pb:pos1'] = function(player, message) { setFirstPosition(player, message); };
 commands['pb:pos2'] = function(player, message) { setSecondPosition(player, message); };
-commands['pb:start'] = function(player, message) { setup(player, message); };
-commands['pb:show'] = function(player, message) { commandSelections(player, message, "show"); };
+commands['pb:fill'] = function(player, message) { setup(player, message); world.sendMessage("Particles spawned");};
+commands['pb:show'] = function(player, message) { commandSelections(player, message, "show"); world.sendMessage("Particles shown");};
 commands['pb:hide'] = function(player, message) { commandSelections(player, message, "hide"); };
-commands['pb:update'] = function(player, message) { updateParticles(player, message); };
+commands['pb:set'] = function(player, message) { updateParticles(player, message, "set"); };
+commands['pb:remove'] = function(player, message) { updateParticles(player, message, "remove"); };
 commands['pb:drawCube'] = function(player, message) { drawCube(player, message);};
 
 system.afterEvents.scriptEventReceive.subscribe((event) => {
@@ -20,6 +21,12 @@ system.afterEvents.scriptEventReceive.subscribe((event) => {
 		return;
 	}
 })
+
+function updateParticles(player, message, mode) {
+	const substrings = message.split(' ');
+	if(mode === "set") command(player, substrings[1], substrings[0], parseInt(substrings[2]));
+	else if(mode === "remove") command(player, substrings[1], `remove_${substrings[0]}`, parseInt(substrings[2]));
+}
 
 function setFirstPosition(player, message) { 
 	if(message) {

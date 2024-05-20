@@ -8,7 +8,7 @@ export function commandSelections(player, message, mode) {
     else if(substrings[0] === "outline") command(player, substrings[1], `evt:${mode}_radius`, parseInt(substrings[2]));
 }
 
-function command(player, mode, event, radius = 0) {
+export function command(player, mode, event, radius = 0) {
     if(mode === "radius") radiusSelection(player, radius, event);
     else if(mode === "area") areaSelection(player, event);
     else if(mode === "column") columnSelection(player, event);
@@ -21,14 +21,13 @@ function radiusSelection(player, radius, event, box = false) {
 
     if(radius <= massParticleGenerator.maxRadius) {
         if(box) radius = 512;
-        world.sendMessage("Selecting entities...");
         player.dimension.getEntities({
             type: massParticleGenerator.getFogEntity(),
             location: player.location,
             maxDistance: radius
         }).forEach(entity => {
             if(box) {if(isBetween(entity.location, firstPosition, secondPosition)) entity.triggerEvent(event);}
-            else entity.triggerEvent(event); world.sendMessage("Selection complete!");
+            else entity.triggerEvent(event); 
         });
     } else world.sendMessage("Radius too large!");
 }

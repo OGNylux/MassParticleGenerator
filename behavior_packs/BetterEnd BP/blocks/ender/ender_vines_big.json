@@ -1,0 +1,30 @@
+{
+    "format_version": "1.19.40",
+    "minecraft:block": {
+        "description": {
+            "identifier": "pb:ender_vines_big",
+			"menu_category": {
+				"category": "construction",
+				"group": "itemGroup.name.leaves"
+			}
+        },
+        "components": {
+            "minecraft:material_instances": {
+                "*": {
+                    "render_method": "blend"
+                }
+            },
+            "minecraft:destructible_by_mining": {
+				"seconds_to_destroy": 0.2
+			},
+			"minecraft:destructible_by_explosion": {
+				"explosion_resistance": 15
+			},
+			"minecraft:flammable": {
+				"destroy_chance_modifier": 20,
+				"catch_chance_modifier": 5
+			}
+            
+        }
+    }
+}

@@ -1,0 +1,34 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "pb:pillar",
+            "materials": {
+                "default": "skeleton"
+            },
+            "textures": {
+                "default": "textures/entity/TeleporterStone/teleportstone_active"
+            },
+            "render_controllers": [
+                "controller.render.basic"
+            ],
+            "animations": {
+                "on": "animation.teleportstone.on",
+                "idle": "animation.teleportstone.activate.idle",
+                "controller": "controller.animation.pillar"
+            },
+            "scripts": {
+                "animate": [
+                    "controller"
+                ]
+            },
+			"spawn_egg": {
+				"base_color": "#FFFFFF",
+				"overlay_color": "#000000"
+			},
+            "geometry": {
+                "default": "geometry.teleportstone"
+            }
+        }
+    }
+}

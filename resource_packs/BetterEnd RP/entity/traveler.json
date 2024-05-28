@@ -1,0 +1,33 @@
+{
+    "format_version": "1.12.0",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "pb:traveler",
+            "materials": {
+                "default": "villager"
+            },
+            "textures": {
+                "end_villager": "textures/entity/traveler"
+            },
+            "geometry": {
+                "default": "geometry.traveler"
+            },
+            "render_controllers": [ "controller.render.end_villager" ],
+			"spawn_egg": {
+				"base_color": "#e0b94c",
+				"overlay_color": "#2474cf"
+			},
+            "scripts": {
+                "scale": "0.9375",
+                "animate": ["move_controller","root_controller"]
+            },
+            "animations": {
+                "general": "animation.end_villager.general",
+                "move": "animation.end_villager.move",
+                "look_at_target": "animation.common.look_at_target",
+                "move_controller":"controller.animation.end_villager.move",
+                "root_controller":"controller.animation.end_villager.general"
+            }
+        }
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "format_version": "1.12.0",
+    "minecraft:item": {
+      "description": {
+        "identifier": "pb:enderite_sword",
+        "category": "Items"
+      },
+  
+      "components": {
+        "minecraft:icon": "enderite_sword"
+      }
+    }
+  }
+  

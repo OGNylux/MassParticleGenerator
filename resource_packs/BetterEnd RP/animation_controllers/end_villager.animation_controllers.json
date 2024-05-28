@@ -1,0 +1,42 @@
+{
+	"format_version" : "1.10.0",
+	"animation_controllers" : {
+		"controller.animation.end_villager.move" : {
+			"initial_state" : "default",
+			"states" : {
+				"default" : {
+					"transitions" : [
+						{
+							"move" : "q.ground_speed>0.7"
+						}
+					],
+					"blend_transition":0.5
+				},
+				"move":{
+					"animations": [
+						"move"
+					],
+					"transitions": [
+						{
+							"default": "q.ground_speed<0.7"
+						}
+					],
+					"blend_transition":0.5
+				}
+			}
+		},
+		"controller.animation.end_villager.general" : {
+			"initial_state" : "default",
+			"states" : {
+				"default" : {
+					"animations" : [
+						"general",
+						{
+							"look_at_target" : "!query.is_sleeping"
+						}
+					]
+				}
+			}
+		}
+	}
+}

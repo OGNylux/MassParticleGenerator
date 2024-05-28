@@ -1,0 +1,42 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "pb:crystal_endermen",
+            "materials": {
+                "default": "entity_alphatest"
+              },
+              "textures": {
+                "default": "textures/entity/crystal_endermen"
+              },
+              "geometry": {
+                "default": "geometry.crystal_endermen"
+              },
+              "render_controllers": [
+                "controller.render.basic"
+              ],
+              "animations": {
+                "walk": "animation.endermen.walk",
+                "idle": "animation.crystal_endermen.idle",
+                "scary_face": "animation.crystal_endermen.scary_face",
+                "carrying": "animation.crystal_endermen.carrying",
+                "attack": "animation.crystal_endermen.attack",
+                "controller": "controller.animation.crystal_enderman.root",
+                "attack_controller":"controller.animation.mobs.attack"
+            },
+            "scripts": {
+                "animate": [
+                    "controller",
+                    {
+                      "carrying":"!q.is_item_name_any('slot.weapon.mainhand', 0, '')"
+                    },
+                    "attack_controller"
+                ]
+            },
+            "spawn_egg": {
+                "base_color": "#0f0213",
+                "overlay_color": "#67d8ec"
+            }
+        }
+    }
+}

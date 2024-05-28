@@ -1,0 +1,159 @@
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+        "controller.animation.openDiag": {
+            "initial_state": "default",
+            "states": {
+                "default": {
+                    "transitions": [
+                        {
+                            "execute": "query.skin_id == 1"
+                        }
+                    ]
+                },
+                "execute": {
+                    "transitions": [
+                        {
+                            "default": "query.skin_id == 0"
+                        }
+                    ],
+                    "on_entry": [
+                        "/execute as @p run dialogue open @e[type=pb:teleporter_stone1,c=1] @s beforeWave_tt"
+                    ]
+                }
+            }
+        },
+        "controller.animation.openDiag2": {
+            "initial_state": "default",
+            "states": {
+                "default": {
+                    "transitions": [
+                        {
+                            "execute": "query.skin_id == 1"
+                        }
+                    ]
+                },
+                "execute": {
+                    "transitions": [
+                        {
+                            "default": "query.skin_id == 0"
+                        }
+                    ],
+                    "on_entry": [
+                        "/execute as @p run dialogue open @e[type=pb:teleporter_stone2,c=1] @s beforeWave_tf"
+                    ]
+                }
+            }
+        },
+        "controller.animation.openDiag3": {
+            "initial_state": "default",
+            "states": {
+                "default": {
+                    "transitions": [
+                        {
+                            "execute": "query.skin_id == 1"
+                        }
+                    ]
+                },
+                "execute": {
+                    "transitions": [
+                        {
+                            "default": "query.skin_id == 0"
+                        }
+                    ],
+                    "on_entry": [
+                        "/execute as @p run dialogue open @e[type=pb:teleporter_stone3,c=1] @s beforeWave_ft"
+                    ]
+                }
+            }
+        },
+        "controller.animation.openDiag4": {
+            "initial_state": "default",
+            "states": {
+                "default": {
+                    "transitions": [
+                        {
+                            "execute": "query.skin_id == 1"
+                        }
+                    ]
+                },
+                "execute": {
+                    "transitions": [
+                        {
+                            "default": "query.skin_id == 0"
+                        }
+                    ],
+                    "on_entry": [
+                        "/execute as @p run dialogue open @e[type=pb:teleporter_stone4,c=1] @s beforeWave_ff"
+                    ]
+                }
+            }
+        },
+        "controller.animation.openDiag5": {
+            "initial_state": "default",
+            "states": {
+                "default": {
+                    "transitions": [
+                        {
+                            "execute": "query.skin_id == 1"
+                        }
+                    ]
+                },
+                "execute": {
+                    "transitions": [
+                        {
+                            "default": "query.skin_id == 0"
+                        }
+                    ],
+                    "on_entry": [
+                        "/execute as @p run dialogue open @e[type=pb:teleporter_stone5,c=1] @s inWave_tt"
+                    ]
+                }
+            }
+        },
+        "controller.animation.openDiag6": {
+            "initial_state": "default",
+            "states": {
+                "default": {
+                    "transitions": [
+                        {
+                            "execute": "query.skin_id == 1"
+                        }
+                    ]
+                },
+                "execute": {
+                    "transitions": [
+                        {
+                            "default": "query.skin_id == 0"
+                        }
+                    ],
+                    "on_entry": [
+                        "/execute as @p run dialogue open @e[type=pb:teleporter_stone6,c=1] @s inWave_tf"
+                    ]
+                }
+            }
+        },
+        "controller.animation.openDiag7": {
+            "initial_state": "default",
+            "states": {
+                "default": {
+                    "transitions": [
+                        {
+                            "execute": "query.skin_id == 1"
+                        }
+                    ]
+                },
+                "execute": {
+                    "transitions": [
+                        {
+                            "default": "query.skin_id == 0"
+                        }
+                    ],
+                    "on_entry": [
+                        "/execute as @p run dialogue open @e[type=pb:teleporter_stone7,c=1] @s inWave_ft"
+                    ]
+                }
+            }
+        }
+    }
+}

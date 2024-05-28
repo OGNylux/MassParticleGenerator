@@ -1,0 +1,42 @@
+{
+  "format_version": "1.20.1",
+  "minecraft:block": {
+      "description": {
+          "identifier": "pb:crystal_bud_stage_0",
+          "menu_category": {
+              "category": "construction",
+              "group": "itemGroup.name.glassPane"
+          }
+      },
+      "components": {
+        "minecraft:light_emission": 12,
+          "minecraft:geometry": "geometry.crystal_grass",
+          "minecraft:collision_box":false,
+          "minecraft:selection_box":{
+              "origin": [
+                  -8,
+                  0,
+                  -8
+              ],
+              "size": [
+                  16,
+                  16,
+                  16
+              ]
+          },
+          "minecraft:material_instances": {
+              "*": {
+                  "texture": "crystal_bud_stage_0",
+                  "render_method": "blend"
+              }
+          },
+          "minecraft:destructible_by_mining": {
+            "seconds_to_destroy": 0.1
+        },
+        "minecraft:destructible_by_explosion": {
+            "explosion_resistance": 0.6
+        }
+        
+      }
+  }
+}

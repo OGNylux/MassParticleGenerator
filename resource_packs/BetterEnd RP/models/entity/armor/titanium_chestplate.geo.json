@@ -1,0 +1,60 @@
+{
+	"format_version": "1.16.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.titanium_chestplate",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "body",
+					"pivot": [0, 14, 0]
+				},
+				{
+					"name": "chestplate",
+					"parent": "body",
+					"pivot": [0, 0, 0],
+					"binding": "'body'",
+					"cubes": [
+						{"origin": [-4, 0, -2], "size": [8, 14, 4], "inflate": 0.6, "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "arm_right",
+					"pivot": [-5, 12, 0]
+				},
+				{
+					"name": "arm_plate_right",
+					"parent": "arm_right",
+					"pivot": [-5, 2, 0],
+					"binding": "'rightarm'",
+					"cubes": [
+						{"origin": [-8.55, 4, -2.5], "size": [2, 4, 5], "inflate": 0.8, "uv": [28, 16]},
+						{"origin": [-8, 2, -2], "size": [3, 12, 4], "inflate": 1.1, "uv": [0, 18]},
+						{"origin": [-9.125, 11, -2.5], "size": [5, 3, 5], "inflate": 1.1, "uv": [24, 0]}
+					]
+				},
+				{
+					"name": "arm_left",
+					"pivot": [5, 12, 0]
+				},
+				{
+					"name": "arm_plate_left",
+					"parent": "arm_left",
+					"pivot": [5, 2, 0],
+					"binding": "'leftarm'",
+					"cubes": [
+						{"origin": [5, 2, -2], "size": [3, 12, 4], "inflate": 1.1, "uv": [14, 18]},
+						{"origin": [4, 11, -2.5], "size": [5, 3, 5], "inflate": 1.1, "uv": [24, 8]},
+						{"origin": [6.55, 4, -2.5], "size": [2, 4, 5], "inflate": 0.8, "uv": [28, 25]}
+					]
+				}
+			]
+		}
+	]
+}

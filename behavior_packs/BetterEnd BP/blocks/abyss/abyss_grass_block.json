@@ -1,0 +1,20 @@
+{
+    "format_version": "1.20.10",
+    "minecraft:block": {
+        "description": {
+            "identifier": "pb:abyss_grass_block",
+            "menu_category": {
+                "category": "construction",
+                "group": "itemGroup.name.dirt"
+            }
+        },
+        "components": {
+            "minecraft:destructible_by_mining": {
+				"seconds_to_destroy": 0.6
+			},
+			"minecraft:destructible_by_explosion": {
+				"explosion_resistance": 0.6
+			}
+        }
+    }
+}

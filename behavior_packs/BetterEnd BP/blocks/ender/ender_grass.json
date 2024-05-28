@@ -1,0 +1,35 @@
+{
+    "format_version": "1.19.60",
+    "minecraft:block": {
+        "description": {
+            "identifier": "pb:ender_grass",
+			"menu_category": {
+				"category": "construction",
+				"group": "itemGroup.name.grass"
+			}
+        },
+        "components": {
+            "minecraft:light_emission": 8,
+            "minecraft:geometry": "geometry.crystal_grass",
+			"minecraft:collision_box":false,
+            "minecraft:selection_box":{
+                "origin": [
+                    -8,
+                    0,
+                    -8
+                ],
+                "size": [
+                    16,
+                    16,
+                    16
+                ]
+            },
+            "minecraft:material_instances": {
+                "*": {
+                    "texture": "ender_grass",
+                    "render_method": "blend"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "format_version": "1.19.60",
+    "minecraft:block": {
+        "description": {
+            "identifier": "pb:ender_vines",
+			"menu_category": {
+				"category": "construction",
+				"group": "itemGroup.name.grass"
+			}
+        },
+        "components": {
+            "minecraft:light_emission": 11,
+            "minecraft:geometry": "geometry.crystal_grass",
+			"minecraft:collision_box":false,
+            "minecraft:selection_box":{
+                "origin": [
+                    -4,
+                    0,
+                    -4
+                ],
+                "size": [
+                    8,
+                    16,
+                    8
+                ]
+            },
+            "minecraft:material_instances": {
+                "*": {
+                    "texture": "ender_vines",
+                    "render_method": "blend"
+                }
+            },
+            "minecraft:destructible_by_mining": {
+				"seconds_to_destroy": 0
+			},
+			"minecraft:destructible_by_explosion": {
+				"explosion_resistance": 0.6
+			},
+			"minecraft:flammable": {
+				"destroy_chance_modifier": 20,
+				"catch_chance_modifier": 5
+			}
+        }
+    }
+}

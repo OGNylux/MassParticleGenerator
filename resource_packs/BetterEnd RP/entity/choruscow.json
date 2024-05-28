@@ -1,0 +1,33 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "pb:choruscow",
+            "materials": {
+                "default": "entity_alphatest"
+              },
+              "textures": {
+                "default": "textures/entity/choruscow"
+              },
+              "geometry": {
+                "default": "geometry.choruscow"
+              },
+              "render_controllers": [
+                "controller.render.basic"
+              ],
+              "animations": {
+                "walk": "animation.choruscow.walk",
+                "move_controller": "controller.animation.mobs.walk"
+            },
+            "scripts": {
+                "animate": [
+                    "move_controller"
+                ]
+            },
+            "spawn_egg": {
+              "base_color": "#7c1ff5",
+              "overlay_color": "#30044e"
+            }
+        }
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "format_version": "1.12",
+    "minecraft:recipe_shaped": {
+        "description": {
+            "identifier": "pb:titanium_axe"
+        },
+        "tags": [
+            "crafting_table"
+        ],
+        "pattern": [
+            "tt",
+            "t/",
+            " /"
+        ],
+        "key": {
+            "t": {
+                "item": "pb:titanium_ingot"
+            },
+            "/": {
+                "item": "minecraft:stick"
+            }
+        },
+        "result": {
+            "item": "pb:titanium_axe",
+            "count": 1
+        }
+    }
+}

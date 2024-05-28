@@ -2,20 +2,29 @@ import { world } from "@minecraft/server"
 import { massParticleGenerator } from "./data";
 import { isBetween } from "./utilityFunctions";
 
-export function commandSelections(player, message, mode) {
+export function commandSelection(player, message, func) {
     const substrings = message.split(' ');
-    if(substrings[0] === "hitbox") command(player, substrings[1], `evt:${mode}_box`, parseInt(substrings[2]));
-    else if(substrings[0] === "outline") command(player, substrings[1], `evt:${mode}_radius`, parseInt(substrings[2]));
+    command(player, substrings[1], substrings[0], func, parseInt(substrings[2]));
 }
 
-export function command(player, mode, event, radius = 0) {
-    if(mode === "radius") radiusSelection(player, radius, event);
-    else if(mode === "area") areaSelection(player, event);
-    else if(mode === "column") columnSelection(player, event);
+export function teleportSelection(player, message, func) {
+    const substrings = message.split(' ');
+    command(player, substrings[4], {x: parseInt(substrings[1]), y: parseInt(substrings[2]), z: parseInt(substrings[3])}, func, parseInt(substrings[5]));
+}
+
+export function despawnSelection(player, message, func) {
+    const substrings = message.split(' ');
+    command(player, substrings[0], "", func, parseInt(substrings[1]));
+}
+
+function command(player, mode, event, func, radius = 0) {
+    if(mode === "radius") radiusSelection(player, radius, event, func);
+    else if(mode === "area") areaSelection(player, event, func);
+    else if(mode === "column") columnSelection(player, event, func);
     else world.sendMessage("No selection method given");
 }
 
-function radiusSelection(player, radius, event, box = false) {
+function radiusSelection(player, radius, event, func, box = false) {
     const firstPosition = massParticleGenerator.getFirstPosition();
     const secondPosition = massParticleGenerator.getSecondPosition();
 
@@ -26,13 +35,13 @@ function radiusSelection(player, radius, event, box = false) {
             location: player.location,
             maxDistance: radius
         }).forEach(entity => {
-            if(box) {if(isBetween(entity.location, firstPosition, secondPosition)) entity.triggerEvent(event);}
-            else entity.triggerEvent(event); 
+            if(box) {if(isBetween(entity.location, firstPosition, secondPosition)) func(entity, event);}
+            else func(entity, event); 
         });
     } else world.sendMessage("Radius too large!");
 }
 
-function areaSelection(player, event) {
+function areaSelection(player, event, func) {
     const firstPosition = massParticleGenerator.getFirstPosition();
     const secondPosition = massParticleGenerator.getSecondPosition();
     const entitySpacing = massParticleGenerator.getEntitySpacing();
@@ -41,10 +50,10 @@ function areaSelection(player, event) {
     const tpSpacingZ = Math.floor(Math.abs(secondPosition.z - firstPosition.z) / entitySpacing);
 
 	massParticleGenerator.setSavedLocation(player.location);
-    massParticleGenerator.mpg_algorithm(player, tpSpacingX, tpSpacingZ, () => { radiusSelection(player, 160, event, true) });
+    massParticleGenerator.mpg_algorithm(player, tpSpacingX, tpSpacingZ, () => { radiusSelection(player, 160, event, func, true) });
 }
 
-function columnSelection(player, event) {
+function columnSelection(player, event, func) {
     const nearestEntity = player.dimension.getEntities({
         type: massParticleGenerator.getFogEntity(),
         location: player.location,
@@ -52,12 +61,15 @@ function columnSelection(player, event) {
         maxDistance: 16
     })[0];
 
+    const tablePositionX = nearestEntity.getDynamicProperty("tablePositionX");
+    const tablePositionZ = nearestEntity.getDynamicProperty("tablePositionZ");
+
     player.dimension.getEntities({
         type: massParticleGenerator.getFogEntity()
     })
     .forEach(entity => {
-        if(entity.getDynamicProperty("tablePositionX") === nearestEntity.getDynamicProperty("tablePositionX") && entity.getDynamicProperty("tablePositionZ") === nearestEntity.getDynamicProperty("tablePositionZ")) {
-            entity.triggerEvent(event);
+        if(entity.getDynamicProperty("tablePositionX") === tablePositionX && entity.getDynamicProperty("tablePositionZ") === tablePositionZ) {
+            func(entity, event);
         }
     });
 }

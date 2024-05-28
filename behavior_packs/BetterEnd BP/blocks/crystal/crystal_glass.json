@@ -1,0 +1,26 @@
+{
+    "format_version": "1.19.40",
+    "minecraft:block": {
+        "description": {
+            "identifier": "pb:crystal_glass",
+            "menu_category": {
+                "category": "construction",
+                "group": "itemGroup.name.glass"
+            }
+        },
+        "components": {
+            "minecraft:light_emission": 12,
+            "minecraft:material_instances": {
+                "*": {
+                    "render_method": "blend"
+                }
+            },
+            "minecraft:destructible_by_mining": {
+              "seconds_to_destroy": 0.1
+          },
+          "minecraft:destructible_by_explosion": {
+              "explosion_resistance": 0.6
+          }
+        }
+    }
+}

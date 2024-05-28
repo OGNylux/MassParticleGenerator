@@ -1,0 +1,33 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "pb:ender_blaze",
+            "materials": {
+                "default": "animated_alphatest"
+              },
+              "textures": {
+                "default": "textures/entity/ender_blaze"
+              },
+              "geometry": {
+                "default": "geometry.ender_blaze"
+              },
+              "render_controllers": [
+                "controller.render.animated"
+              ],
+              "animations": {
+                "idle": "animation.ender_blaze.idle",
+                "idle_controller": "controller.animation.ender_blaze.idle_controller"
+            },
+            "scripts": {
+                "animate": [
+                    "idle_controller"
+                ]
+            },
+            "spawn_egg": {
+                "base_color": "#9929ce",
+                "overlay_color": "#351741"
+            }
+        }
+    }
+}

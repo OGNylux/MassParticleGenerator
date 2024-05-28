@@ -1,0 +1,20 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:block": {
+        "description": {
+            "identifier": "pb:end_ore",
+			"menu_category": {
+				"category": "construction",
+				"group": "itemGroup.name.ore"
+			}
+        },
+        "components": {
+            "minecraft:destructible_by_mining": {
+				"seconds_to_destroy": 1
+			},
+			"minecraft:destructible_by_explosion": {
+				"explosion_resistance": 30
+			}
+        }
+    }
+}

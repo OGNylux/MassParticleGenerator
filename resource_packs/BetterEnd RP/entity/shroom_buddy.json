@@ -1,0 +1,37 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "pb:shroom_buddy",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "default": "textures/entity/shroom_buddy"
+      },
+      "geometry": {
+        "default": "geometry.shroom_buddy"
+      },
+      "render_controllers": [
+        "controller.render.basic"
+      ],
+      "animations": {
+        "walk": "animation.shroombuddy.walk",
+        "idle": "animation.shroombuddy.idle",
+        "sit": "animation.shroombuddy.sit",
+        "move_controller": "controller.animation.mobs.walk_idle",
+        "sit_controller": "controller.animation.mobs.sit"
+      },
+      "scripts": {
+        "animate": [
+          "move_controller",
+          "sit_controller"
+        ]
+      },
+      "spawn_egg": {
+        "base_color": "#0992c9",
+        "overlay_color": "#8d3beb"
+      }
+    }
+  }
+}

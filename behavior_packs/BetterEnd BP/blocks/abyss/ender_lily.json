@@ -1,0 +1,35 @@
+{
+    "format_version": "1.20.51",
+    "minecraft:block": {
+        "description": {
+            "identifier": "pb:ender_lily",
+			"menu_category": {
+				"category": "construction",
+				"group": "itemGroup.name.grass"
+			}
+        },
+        "components": {
+            "minecraft:light_emission": 11,
+            "minecraft:geometry": "geometry.ender_lily",
+			"minecraft:collision_box":false,
+            "minecraft:selection_box":{
+                "origin": [
+                    -8,
+                    0,
+                    -8
+                ],
+                "size": [
+                    16,
+                    1,
+                    16
+                ]
+            },
+            "minecraft:material_instances": {
+                "*": {
+                    "texture": "ender_lily",
+                    "render_method": "alpha_test"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,40 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.totem.on_use": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "transitions": [
+            { "on_use": "q.property('kubo:totem.on_use')" }
+          ]
+        },
+        "on_use": {
+          "on_entry": [
+            "/scriptevent kubo:totem.on_use",
+            "/event entity @s kubo:totem.on_use.remove"
+          ],
+          "transitions": [
+            { "default": "!q.property('kubo:totem.on_use')" }
+          ]
+        }
+      }
+    },
+
+    "controller.animation.totem.animation": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "transitions": [
+            { "totem": "q.equipped_item_any_tag('slot.weapon.mainhand', 'kubo:totem') || q.equipped_item_any_tag('slot.weapon.offhand', 'kubo:totem')" }
+          ]
+        },
+
+        "totem": {
+          "on_entry": [ "@s kubo:totem_ids" ],
+          "transitions": [ { "default": "(1.0)" } ]
+        }
+      }
+    }
+  }
+}

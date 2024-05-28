@@ -1,18 +1,20 @@
 import { world, system, MolangVariableMap } from "@minecraft/server"
 import { massParticleGenerator } from "./data";
-import { commandSelections, command } from "./commandSelections";
+import { commandSelection, teleportSelection, despawnSelection } from "./commandSelections";
 import { spawnEntity } from "./utilityFunctions";
 
 let commands = {};
 
 commands['pb:pos1'] = function(player, message) { setFirstPosition(player, message); };
 commands['pb:pos2'] = function(player, message) { setSecondPosition(player, message); };
-commands['pb:fill'] = function(player, message) { setup(player, message); world.sendMessage("Particles spawned");};
-commands['pb:show'] = function(player, message) { commandSelections(player, message, "show"); world.sendMessage("Particles shown");};
-commands['pb:hide'] = function(player, message) { commandSelections(player, message, "hide"); };
-commands['pb:set'] = function(player, message) { updateParticles(player, message, "set"); };
-commands['pb:remove'] = function(player, message) { updateParticles(player, message, "remove"); };
-commands['pb:drawCube'] = function(player, message) { drawCube(player, message);};
+commands['pb:fill'] = function(player, message) { setup(player, message); };
+commands['pb:show'] = function(player, message) { commandSelection(player, message, (entity, tag) => { entity.addTag(tag) }); };
+commands['pb:hide'] = function(player, message) { commandSelection(player, message, (entity, tag) => { entity.removeTag(tag) }); };
+commands['pb:set'] = function(player, message) { commandSelection(player, message, (entity, event) => { entity.triggerEvent(event) }); };
+commands['pb:remove'] = function(player, message) { commandSelection(player, message, (entity, event) => { entity.triggerEvent(`remove_${event}`) }); };
+commands['pb:move'] = function(player, message) { teleportSelection(player, message, (entity, coordinates) => { move(entity, message.split(' ')[0], coordinates) }); };
+commands['pb:despawn'] = function(player, message) { despawnSelection(player, message, (entity, event) => { entity.remove() }); };
+commands['pb:drawCube'] = function(player, message) { drawCube(player, message); };
 
 system.afterEvents.scriptEventReceive.subscribe((event) => {
 	const {id, sourceEntity, message} = event;
@@ -22,11 +24,38 @@ system.afterEvents.scriptEventReceive.subscribe((event) => {
 	}
 })
 
-function updateParticles(player, message, mode) {
-	const substrings = message.split(' ');
-	if(mode === "set") command(player, substrings[1], substrings[0], parseInt(substrings[2]));
-	else if(mode === "remove") command(player, substrings[1], `remove_${substrings[0]}`, parseInt(substrings[2]));
+function move(entity, mode, coordinates) {
+	let x, y, z;
+
+	if(mode === "relative") {
+		x = coordinates?.x + entity.location.x;
+		y = coordinates?.y + entity.location.y;
+		z = coordinates?.z + entity.location.z;
+	} else {
+		x = coordinates?.x;
+		y = coordinates?.y;
+		z = coordinates?.z;
+	}
+
+	entity.teleport({x, y, z});
 }
+
+function drawCubes() {
+	system.runInterval(() => {
+		world.getAllPlayers().forEach(player => {
+			player.dimension.getEntities({
+				type: massParticleGenerator.getFogEntity(),
+				location: player.location,
+				maxDistance: 92
+			}).forEach(entity => {
+				if(entity.hasTag("outline")) drawCube(entity, massParticleGenerator.getEntitySpacing() / 2);
+				if(entity.hasTag("hitbox")) drawCube(entity, 0.5);
+			})
+		});
+	}, 20);
+}
+
+drawCubes();
 
 function setFirstPosition(player, message) { 
 	if(message) {

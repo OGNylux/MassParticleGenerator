@@ -1,0 +1,28 @@
+{
+    "format_version": "1.12",
+    "minecraft:recipe_shaped": {
+        "description": {
+            "identifier": "pb:enderite_pickaxe"
+        },
+        "tags": [
+            "crafting_table"
+        ],
+        "pattern": [
+            "eee",
+            " / ",
+            " / "
+        ],
+        "key": {
+            "e": {
+                "item": "pb:enderite_ingot"
+            },
+            "/": {
+                "item": "minecraft:stick"
+            }
+        },
+        "result": {
+            "item": "pb:enderite_pickaxe",
+            "count": 1
+        }
+    }
+}

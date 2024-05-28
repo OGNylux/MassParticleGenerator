@@ -1,0 +1,27 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.pillar_destroy": {
+      "states": {
+        "default": {
+          "on_entry": [
+          ],
+          "transitions": [
+            {
+              "pillar_destroy": "query.mark_variant == 1"
+            }
+          ]
+        },
+        "pillar_destroy": {
+          "on_entry": [
+            "/playsound beacon.deactivate @a[r=100] ~ ~ ~ 1 1 1",
+            "/particle minecraft:huge_explosion_emitter ~ ~ ~",
+            "/scoreboard players add @e[type=pb:boss_altar] pillar_destroy 1",
+            "/execute as @e[type=pb:boss_altar,scores={pillar_destroy=10}] run event entity @e[type=pb:final_boss] pb:second_phase"
+          ],
+          "on_exit": []
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+    "format_version": "1.19.50",
+    "animations": {
+        "animation.player.sneak_resetter": {
+            "loop": true,
+            "animation_length": 1.5,
+            "timeline": {
+                "1.0":["v.sneaks = 0;"]
+            }
+        }
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+        "controller.animation.slime": {
+            "initial_state": "default",
+            "states": {
+                "default": {
+                    "transitions": [
+                        {
+                            "move": "query.modified_move_speed > 0.1"
+                        }
+                    ],
+                    "on_exit": []
+                },
+                "move": {
+                    "transitions": [
+                        {
+                            "default": "query.modified_move_speed < 0.1"
+                        }
+                    ],
+                    "on_entry": [
+                        "@s jump_movement"
+                    ]
+                }
+            }
+        }
+    }
+}

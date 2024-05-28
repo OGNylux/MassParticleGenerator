@@ -1,0 +1,32 @@
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+        "controller.animation.pillar": {
+            "initial_state": "default",
+            "states": {
+                "default": {
+                    "transitions": [
+                        {
+                            "on": "query.skin_id == 1"
+                        }
+                    ]
+                },
+                "on": {
+                    "animations": [
+                        "on"
+                    ],
+                    "transitions": [
+                        {
+                            "idle": "query.all_animations_finished"
+                        }
+                    ]
+                },
+                "idle": {
+                    "animations": [
+                        "idle"
+                    ]
+                }
+            }
+        }
+    }
+}

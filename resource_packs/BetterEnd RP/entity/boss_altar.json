@@ -1,0 +1,24 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "pb:boss_altar",
+            "materials": {
+                "default": "skeleton"
+            },
+            "textures": {
+                "boss_altar": "textures/entity/SpawnAltar/boss_altar"
+            },
+            "geometry": {
+                "default": "geometry.boss_altar"
+            },
+			"spawn_egg": {
+				"base_color": "#FFFFFF",
+				"overlay_color": "#000000"
+			},
+            "render_controllers": [
+                "controller.render.boss_altar"
+            ]
+        }
+    }
+}

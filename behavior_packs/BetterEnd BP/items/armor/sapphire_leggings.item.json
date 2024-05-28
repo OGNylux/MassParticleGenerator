@@ -1,0 +1,36 @@
+{
+	"format_version": "1.20.50",
+	"minecraft:item": {
+		"description": {
+			"identifier": "pb:sapphire_leggings",
+			"menu_category": {
+				"category": "equipment",
+				"group": "itemGroup.name.leggings"
+			}
+		},
+		"components": {
+			"minecraft:display_name": {
+				"value": "Sapphire Leggings"
+			},
+			"minecraft:max_stack_size": 1,
+			"minecraft:icon": {
+				"texture": "sapphire_leggings"
+			},
+			"minecraft:wearable": {
+				"slot": "slot.armor.legs",
+				"protection": 6
+			},
+			"minecraft:durability": {
+				"max_durability": 1000
+			},
+			"minecraft:repairable": {
+				"repair_items": [
+					{
+						"items": ["crystalized_shard"],
+						"repair_amount": 250
+					}
+				]
+			}
+		}
+	}
+}

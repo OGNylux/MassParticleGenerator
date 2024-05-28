@@ -3,11 +3,11 @@ import { system } from "@minecraft/server"
 let counter = 1;
 
 class MassParticleGenerator {
-    fogEntity = "pb:fog"
+    fogEntity = "pb:biome_detector"
     firstPosition = {};
     secondPosition = {};
     savedLocation = {};
-    entitySpacing = 32;
+    entitySpacing = 30;
     maxRadius = 160;
     stop = false;
     
@@ -32,9 +32,9 @@ class MassParticleGenerator {
                     fadeOutDuration: 2,
                     subtitle: "use !stop to stop MGP"
                 });
-                await sleep(1);
+                await sleep(2);
                 func(x,z);
-                await sleep(1);
+                await sleep(2);
                 player.teleport({x: player.location.x + directionX * this.entitySpacing, y: yPosition, z: player.location.z});
 
                 counter++;

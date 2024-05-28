@@ -1,0 +1,349 @@
+{
+	"format_version": "1.18.10",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "pb:abyss_slime",
+			"is_spawnable": true,
+			"is_summonable": true,
+			"is_experimental": false,
+			"scripts": {
+				"animate": [
+					"move"
+				]
+			},
+			"animations": {
+				"move": "controller.animation.slime"
+			}
+		},
+		"component_groups": {
+			"minecraft:slime_large": {
+				"minecraft:variant": {
+					"value": 4
+				},
+				"minecraft:scale": {
+					"value": 1
+				},
+				"minecraft:collision_box": {
+					"width": 2.08,
+					"height": 2.08
+				},
+				"minecraft:health": {
+					"value": 16,
+					"max": 16
+				},
+				"minecraft:movement": {
+					"value": 0.3
+				},
+				"minecraft:attack": {
+					"damage": 4
+				}
+			},
+			"minecraft:slime_medium": {
+				"minecraft:variant": {
+					"value": 2
+				},
+				"minecraft:scale": {
+					"value": 0.75
+				},
+				"minecraft:collision_box": {
+					"width": 1.04,
+					"height": 1.04
+				},
+				"minecraft:health": {
+					"value": 4,
+					"max": 4
+				},
+				"minecraft:movement": {
+					"value": 0.2
+				},
+				"minecraft:attack": {
+					"damage": 2
+				}
+			},
+			"minecraft:slime_small": {
+				"minecraft:variant": {
+					"value": 1
+				},
+				"minecraft:scale": {
+					"value": 0.5
+				},
+				"minecraft:collision_box": {
+					"width": 0.52,
+					"height": 0.52
+				},
+				"minecraft:health": {
+					"value": 1,
+					"max": 1
+				},
+				"minecraft:movement": {
+					"value": 0.1
+				},
+				"minecraft:attack": {
+					"damage": 0
+				},
+				"minecraft:loot": {
+					"table": "loot_tables/entities/slime.json"
+				}
+			},
+			"minecraft:slime_calm": {
+				"minecraft:movement.basic": {
+					"max_turn": 30
+				}
+			},
+			"minecraft:slime_aggressive": {
+				"minecraft:movement.basic": {
+					"max_turn": 30
+				}
+			},
+			"jump_movement": {
+				"minecraft:timer": {
+					"time": 0.5,
+					"looping": false,
+					"time_down_event": {
+						"event": "no_movement",
+						"target": "self"
+					}
+				}
+			},
+			"no_movement": {
+				"minecraft:movement": {
+					"value": 0
+				},
+				"minecraft:timer": {
+					"time": 1,
+					"looping": false,
+					"time_down_event": {
+						"event": "resume_movement",
+						"target": "self"
+					}
+				}
+			},
+			"resume_movement": {
+				"minecraft:movement": {
+					"value": 0.2
+				},
+				"minecraft:skin_id": {
+					"value": 0
+				}
+			}
+		},
+		"components": {
+			"minecraft:physics": {},
+			"minecraft:persistent": {},
+			"minecraft:type_family": {
+				"family": [
+					"slime",
+					"mob"
+				]
+			},
+			"minecraft:knockback_resistance": {
+				"value": 0.7
+			},
+			"minecraft:is_hidden_when_invisible": {},
+			"minecraft:follow_range": {
+				"value": 55,
+				"max": 55
+			},
+			"minecraft:breathable": {
+				"total_supply": 15,
+				"suffocate_time": -1,
+				"inhale_time": 3.75,
+				"generates_bubbles": false
+			},
+			"minecraft:leashable": {
+				"soft_distance": 4,
+				"hard_distance": 6,
+				"max_distance": 10
+			},
+			"minecraft:despawn": {
+				"despawn_from_distance": {
+					"min_distance": 32,
+					"max_distance": 40
+				}
+			},
+			"minecraft:jump.static": {},
+			"minecraft:hurt_on_condition": {
+				"damage_conditions": [
+					{
+						"filters": {
+							"test": "in_lava",
+							"subject": "self",
+							"operator": "==",
+							"value": true
+						},
+						"cause": "lava",
+						"damage_per_tick": 4
+					}
+				]
+			},
+			"minecraft:conditional_bandwidth_optimization": {},
+			"minecraft:pushable": {
+				"is_pushable": true,
+				"is_pushable_by_piston": true
+			},
+			"minecraft:behavior.nearest_attackable_target": {
+				"priority": 2,
+				"must_see": true,
+				"reselect_targets": true,
+				"within_radius": 32,
+				"entity_types": [
+					{
+						"filters": {
+							"all_of": [
+								{
+									"test": "is_family",
+									"subject": "other",
+									"value": "player"
+								}
+							]
+						},
+						"max_dist": 32
+					}
+				]
+			},
+			"minecraft:behavior.random_stroll": {
+				"priority": 10,
+				"speed_multiplier": 1
+			},
+			"minecraft:behavior.float": {
+				"priority": 0
+			},
+			"minecraft:behavior.look_at_target": {
+				"priority": 11,
+				"look_distance": 8
+			},
+			"minecraft:environment_sensor": {
+				"triggers": [
+					{
+						"event": "pb:dying",
+						"target": "self",
+						"filters": [
+							{
+								"all_of": [
+									{
+										"test": "bool_property",
+										"domain": "pb:dying",
+										"value": false
+									},
+									{
+										"test": "bool_property",
+										"domain": "pb:spawning",
+										"value": false
+									},
+									{
+										"test": "actor_health",
+										"operator": "<=",
+										"value": 1
+									}
+								]
+							}
+						]
+					}
+				]
+			},
+			"minecraft:attack": {
+				"damage": 7
+			},
+			"minecraft:movement": {
+				"value": 0.2
+			},
+			"minecraft:collision_box": {
+				"width": 1.2,
+				"height": 3.8
+			},
+			"minecraft:navigation.generic": {},
+			"minecraft:can_climb": {},
+			"minecraft:experience_reward": {
+				"on_death": "20"
+			}
+		},
+		"events": {
+			"minecraft:entity_spawned": {
+				"add": {
+					"component_groups": [
+						"resume_movement"
+					]
+				},
+				"randomize": [
+					{
+						"weight": 1,
+						"trigger": "spawn_small"
+					},
+					{
+						"weight": 1,
+						"trigger": "spawn_medium"
+					},
+					{
+						"weight": 1,
+						"trigger": "spawn_large"
+					}
+				]
+			},
+			"resume_movement": {
+				"add": {
+					"component_groups": [
+						"resume_movement"
+					]
+				},
+				"remove": {
+					"component_groups": [
+						"no_movement",
+						"jump_movement"
+					]
+				}
+			},
+			"jump_movement": {
+				"add": {
+					"component_groups": [
+						"jump_movement"
+					]
+				}
+			},
+			"no_movement": {
+				"add": {
+					"component_groups": [
+						"no_movement"
+					]
+				}
+			},
+			"spawn_small": {
+				"add": {
+					"component_groups": [
+						"minecraft:slime_small",
+						"minecraft:slime_calm"
+					]
+				}
+			},
+			"spawn_medium": {
+				"add": {
+					"component_groups": [
+						"minecraft:slime_medium",
+						"minecraft:slime_calm"
+					]
+				}
+			},
+			"spawn_large": {
+				"add": {
+					"component_groups": [
+						"minecraft:slime_large",
+						"minecraft:slime_calm"
+					]
+				}
+			},
+			"minecraft:become_calm": {
+				"add": {
+					"component_groups": [
+						"minecraft:slime_calm"
+					]
+				}
+			},
+			"minecraft:become_aggressive": {
+				"add": {
+					"component_groups": [
+						"minecraft:slime_aggressive"
+					]
+				}
+			}
+		}
+	}
+}

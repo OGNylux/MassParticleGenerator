@@ -1,0 +1,39 @@
+{
+  "format_version": "1.20.1",
+  "minecraft:block": {
+      "description": {
+          "identifier": "pb:end_shroom_glow_vines",
+          "menu_category": {
+              "category": "construction",
+              "group": "itemGroup.name.grass"
+          }
+      },
+      "components": {
+        "minecraft:light_emission": 11,
+          "minecraft:geometry": "geometry.end_shroom_vines",
+          "minecraft:selection_box":{
+              "origin": [
+                  -4,
+                  0,
+                  -4
+              ],
+              "size": [
+                  8,
+                  16,
+                  8
+              ]
+          },
+          "minecraft:material_instances": {
+              "*": {
+                  "texture": "end_shroom_glow_vines"
+              }
+          },
+          "minecraft:destructible_by_mining": {
+            "seconds_to_destroy": 0.3
+        },
+        "minecraft:destructible_by_explosion": {
+            "explosion_resistance": 0.2
+        }
+      }
+  }
+}

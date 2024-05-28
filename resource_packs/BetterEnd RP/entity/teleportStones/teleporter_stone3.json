@@ -1,0 +1,31 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "pb:teleporter_stone3",
+            "materials": {
+                "default": "skeleton"
+            },
+            "textures": {
+                "altar_off": "textures/entity/TeleporterStone/teleportstone",
+                "altar_on": "textures/entity/TeleporterStone/teleportstone_active"
+            },
+            "render_controllers": [
+                "controller.render.altar"
+            ],
+            "animations": {
+                "on": "animation.teleportstone.on",
+                "idle": "animation.teleportstone.activate.idle",
+                "controller": "controller.animation.teleport_stone"
+            },
+            "scripts": {
+                "animate": [
+                    "controller"
+                ]
+            },
+            "geometry": {
+                "default": "geometry.teleportstone"
+            }
+        }
+    }
+}

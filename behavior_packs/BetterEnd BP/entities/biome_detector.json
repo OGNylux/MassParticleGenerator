@@ -1,0 +1,429 @@
+{
+    "format_version": "1.16.0",
+    "minecraft:entity": {
+        "description": {
+            "identifier": "pb:biome_detector",
+            "is_spawnable": false,
+            "is_summonable": true,
+            "is_experimental": false,
+            "scripts": {
+                "animate": [
+                    "biome_detector_ambient",
+                    "biome_detector_volume",
+                    "biome_detector_particle",
+                    "ambient_check"
+                ]
+            },
+            "animations": {
+                "ambient_check": "animation.ambient_check",
+                "particle_abyss": "animation.fog.particle_abyss",
+                "volume_abyss": "animation.fog.volume_abyss",
+                "particle_void": "animation.fog.particle_void",
+                "volume_void": "animation.fog.volume_void",
+                "particle_ender": "animation.fog.particle_ender",
+                "volume_ender": "animation.fog.volume_ender",
+                "particle_crystal": "animation.fog.particle_crystal",
+                "volume_crystal": "animation.fog.volume_crystal",
+                "biome_detector_ambient": "controller.animation.biome_detector_ambient",
+                "biome_detector_volume": "controller.animation.biome_detector_volume",
+                "biome_detector_particle": "controller.animation.biome_detector_particle"
+            }
+        },
+        "component_groups": {
+            "ambient_abyss": {
+                "minecraft:skin_id": {
+                    "value": 1
+                }
+            },
+            "ambient_void": {
+                "minecraft:skin_id": {
+                    "value": 2
+                }
+            },
+            "ambient_ender": {
+                "minecraft:skin_id": {
+                    "value": 3
+                }
+            },
+            "ambient_crystal": {
+                "minecraft:skin_id": {
+                    "value": 4
+                }
+            },
+            "volume_abyss": {
+                "minecraft:mark_variant": {
+                    "value": 1
+                }
+            },
+            "volume_void": {
+                "minecraft:mark_variant": {
+                    "value": 2
+                }
+            },
+            "volume_ender": {
+                "minecraft:mark_variant": {
+                    "value": 3
+                }
+            },
+            "volume_crystal": {
+                "minecraft:mark_variant": {
+                    "value": 4
+                }
+            },
+            "particle_abyss": {
+                "minecraft:variant": {
+                    "value": 1
+                }
+            },
+            "particle_void": {
+                "minecraft:variant": {
+                    "value": 2
+                }
+            },
+            "particle_ender": {
+                "minecraft:variant": {
+                    "value": 3
+                }
+            },
+            "particle_crystal": {
+                "minecraft:variant": {
+                    "value": 4
+                }
+            },
+            "remove_all": {
+                "minecraft:skin_id": {
+                    "value": 0
+                },
+                "minecraft:mark_variant": {
+                    "value": 0
+                },
+                "minecraft:variant": {
+                    "value": 0
+                }
+            }
+        },
+        "components": {
+            "minecraft:damage_sensor": {
+                "triggers": [
+                    {
+                        "cause": "all",
+                        "deals_damage": false
+                    }
+                ]
+            },
+            "minecraft:conditional_bandwidth_optimization": {},
+            "minecraft:fire_immune": {},
+            "minecraft:collision_box": {
+                "width": 1,
+                "height": 1
+            },
+            "minecraft:scale": {
+                "value": 1
+            },
+            "minecraft:knockback_resistance": {
+                "value": 1.0
+            },
+            "minecraft:can_fly": {},
+            "minecraft:movement.fly": {},
+            "minecraft:navigation.fly": {
+            },
+            "minecraft:flying_speed": {
+              "value": 0.00
+            },
+            "minecraft:push_through": {
+                "value": 1.0
+            },
+            "minecraft:health": {
+                "value": 20,
+                "max": 20
+            },
+            "minecraft:physics": {
+              "has_collision": false,
+              "has_gravity": false
+            }
+        },
+        "events": {
+            "minecraft:entity_spawned": {
+                "add": {
+                    "component_groups": [
+                        "remove_all"
+                    ]
+                }
+            },
+            "remove_abyss": {
+                "add": {
+                    "component_groups": [
+                        "remove_all"
+                    ]
+                },
+                "remove": {
+                    "component_groups": [
+                        "ambient_abyss",
+                        "volume_abyss",
+                        "particle_abyss"
+                    ]
+                },
+                "queue_command": {
+                    "command": []
+                }
+            },
+            "void": {
+                "add": {
+                    "component_groups": [
+                        "ambient_void",
+                        "volume_void",
+                        "particle_void"
+                    ]
+                }
+            },
+            "remove_void": {
+                "add": {
+                    "component_groups": [
+                        "remove_all"
+                    ]
+                },
+                "remove": {
+                    "component_groups": [
+                        "ambient_void",
+                        "volume_void",
+                        "particle_void"
+                    ]
+                },
+                "queue_command": {
+                    "command": []
+                }
+            },
+            "ender": {
+                "add": {
+                    "component_groups": [
+                        "ambient_ender",
+                        "volume_ender",
+                        "particle_ender"
+                    ]
+                }
+            },
+            "remove_ender": {
+                "add": {
+                    "component_groups": [
+                        "remove_all"
+                    ]
+                },
+                "remove": {
+                    "component_groups": [
+                        "ambient_ender",
+                        "volume_ender",
+                        "particle_ender"
+                    ]
+                },
+                "queue_command": {
+                    "command": []
+                }
+            },
+            "crystal": {
+                "add": {
+                    "component_groups": [
+                        "ambient_crystal",
+                        "volume_crystal",
+                        "particle_crystal"
+                    ]
+                }
+            },
+            "remove_crystal": {
+                "add": {
+                    "component_groups": [
+                        "remove_all"
+                    ]
+                },
+                "remove": {
+                    "component_groups": [
+                        "ambient_crystal",
+                        "volume_crystal",
+                        "particle_crystal"
+                    ]
+                },
+                "queue_command": {
+                    "command": []
+                }
+            },
+            "remove_all": {
+                "add": {
+                    "component_groups": [
+                        "remove_all"
+                    ]
+                },
+                "remove": {
+                    "component_groups": [
+                        "particle_crystal",
+                        "particle_ender",
+                        "particle_void",
+                        "particle_abyss",
+                        "volume_crystal",
+                        "volume_ender",
+                        "volume_void",
+                        "volume_abyss",
+                        "ambient_crystal",
+                        "ambient_ender",
+                        "ambient_void",
+                        "ambient_abyss"
+                    ]
+                },
+                "queue_command": {
+                    "command": [
+                        "fog @a[r=30] remove abyss_fog",
+                        "fog @a[r=30] remove void_fog",
+                        "fog @a[r=30] remove ender_fog",
+                        "fog @a[r=30] remove crystal_fog"
+                    ]
+                }
+            },
+            "ambient_abyss": {
+                "add": {
+                    "component_groups": [
+                        "ambient_abyss"
+                    ]
+                },
+                "remove": {
+                    "component_groups": [
+                        "ambient_void",
+                        "ambient_ender",
+                        "ambient_crystal"
+                    ]
+                },
+                "queue_command": {
+                    "command": []
+                }
+            },
+            "ambient_void": {
+                "add": {
+                    "component_groups": [
+                        "ambient_void"
+                    ]
+                },
+                "remove": {
+                    "component_groups": [
+                        "ambient_abyss",
+                        "ambient_ender",
+                        "ambient_crystal"
+                    ]
+                },
+                "queue_command": {
+                    "command": []
+                }
+            },
+            "ambient_ender": {
+                "add": {
+                    "component_groups": [
+                        "ambient_ender"
+                    ]
+                },
+                "remove": {
+                    "component_groups": [
+                        "ambient_abyss",
+                        "ambient_void",
+                        "ambient_crystal"
+                    ]
+                },
+                "queue_command": {
+                    "command": []
+                }
+            },
+            "ambient_crystal": {
+                "add": {
+                    "component_groups": [
+                        "ambient_crystal"
+                    ]
+                },
+                "remove": {
+                    "component_groups": [
+                        "ambient_abyss",
+                        "ambient_void",
+                        "ambient_ender"
+                    ]
+                },
+                "queue_command": {
+                    "command": []
+                }
+            },
+            "volume_abyss": {
+                "add": {
+                    "component_groups": [
+                        "volume_abyss"
+                    ]
+                },
+                "queue_command": {
+                    "command": []
+                }
+            },
+            "volume_void": {
+                "add": {
+                    "component_groups": [
+                        "volume_void"
+                    ]
+                },
+                "queue_command": {
+                    "command": []
+                }
+            },
+            "volume_ender": {
+                "add": {
+                    "component_groups": [
+                        "volume_ender"
+                    ]
+                },
+                "queue_command": {
+                    "command": []
+                }
+            },
+            "volume_crystal": {
+                "add": {
+                    "component_groups": [
+                        "volume_crystal"
+                    ]
+                },
+                "queue_command": {
+                    "command": []
+                }
+            },
+            "particle_abyss": {
+                "add": {
+                    "component_groups": [
+                        "particle_abyss"
+                    ]
+                },
+                "queue_command": {
+                    "command": []
+                }
+            },
+            "particle_void": {
+                "add": {
+                    "component_groups": [
+                        "particle_void"
+                    ]
+                },
+                "queue_command": {
+                    "command": []
+                }
+            },
+            "particle_ender": {
+                "add": {
+                    "component_groups": [
+                        "particle_ender"
+                    ]
+                },
+                "queue_command": {
+                    "command": []
+                }
+            },
+            "particle_crystal": {
+                "add": {
+                    "component_groups": [
+                        "particle_crystal"
+                    ]
+                },
+                "queue_command": {
+                    "command": []
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,446 @@
+{
+    "format_version": "1.16.0",
+    "minecraft:entity": {
+        "description": {
+            "identifier": "pb:boss_altar",
+            "is_spawnable": false,
+            "is_summonable": true,
+            "is_experimental": false,
+            "scripts": {
+                "animate": [
+                    "place_altar",
+                    "boss_altar"
+                ]
+            },
+            "animations": {
+                "place_altar": "controller.animation.place_altar",
+                "boss_altar": "controller.animation.boss_altar"
+            }
+        },
+        "component_groups": {
+            "pb:orb0": {
+                "minecraft:skin_id": {
+                    "value": 0
+                },
+                "minecraft:mark_variant": {
+                    "value": 0
+                }
+            },
+            "pb:orb1": {
+                "minecraft:mark_variant": {
+                    "value": 1
+                }
+            },
+            "pb:orb1i2": {
+                "minecraft:mark_variant": {
+                    "value": 4
+                }
+            },
+            "pb:orb1i3": {
+                "minecraft:mark_variant": {
+                    "value": 5
+                }
+            },
+            "pb:orb2": {
+                "minecraft:mark_variant": {
+                    "value": 2
+                }
+            },
+            "pb:orb2i3": {
+                "minecraft:mark_variant": {
+                    "value": 6
+                }
+            },
+            "pb:orb3": {
+                "minecraft:mark_variant": {
+                    "value": 3
+                }
+            },
+            "pb:orb1i2i3": {
+                "minecraft:mark_variant": {
+                    "value": 7
+                }
+            }
+        },
+        "components": {
+            "minecraft:interact": {
+                "interactions": [
+                    {
+                        "interact_text": "Place Orb",
+                        "swing": true,
+                        "play_sounds": "beacon.activate",
+                        "use_item": true,
+                        "on_interact": {
+                            "filters": {
+                                "all_of": [
+                                    {
+                                        "test": "has_equipment",
+                                        "domain": "hand",
+                                        "subject": "other",
+                                        "value": "pb:orb1"
+                                    },
+                                    {
+                                        "test": "is_mark_variant",
+                                        "subject": "self",
+                                        "value": 0
+                                    }
+                                ]
+                            },
+                            "event": "pb:orb1"
+                        }
+                    },
+                    {
+                        "interact_text": "Place Orb",
+                        "swing": true,
+                        "play_sounds": "beacon.activate",
+                        "use_item": true,
+                        "on_interact": {
+                            "filters": {
+                                "all_of": [
+                                    {
+                                        "test": "has_equipment",
+                                        "domain": "hand",
+                                        "subject": "other",
+                                        "value": "pb:orb1"
+                                    },
+                                    {
+                                        "test": "is_mark_variant",
+                                        "subject": "self",
+                                        "value": 2
+                                    }
+                                ]
+                            },
+                            "event": "pb:orb1i2"
+                        }
+                    },
+                    {
+                        "interact_text": "Place Orb",
+                        "swing": true,
+                        "play_sounds": "beacon.activate",
+                        "use_item": true,
+                        "on_interact": {
+                            "filters": {
+                                "all_of": [
+                                    {
+                                        "test": "has_equipment",
+                                        "domain": "hand",
+                                        "subject": "other",
+                                        "value": "pb:orb1"
+                                    },
+                                    {
+                                        "test": "is_mark_variant",
+                                        "subject": "self",
+                                        "value": 3
+                                    }
+                                ]
+                            },
+                            "event": "pb:orb1i3"
+                        }
+                    },
+                    {
+                        "interact_text": "Place Orb",
+                        "swing": true,
+                        "play_sounds": "beacon.activate",
+                        "use_item": true,
+                        "on_interact": {
+                            "filters": {
+                                "all_of": [
+                                    {
+                                        "test": "has_equipment",
+                                        "domain": "hand",
+                                        "subject": "other",
+                                        "value": "pb:orb1"
+                                    },
+                                    {
+                                        "test": "is_mark_variant",
+                                        "subject": "self",
+                                        "value": 6
+                                    }
+                                ]
+                            },
+                            "event": "pb:orb1i2i3"
+                        }
+                    },
+                    {
+                        "interact_text": "Place Orb",
+                        "swing": true,
+                        "play_sounds": "beacon.activate",
+                        "use_item": true,
+                        "on_interact": {
+                            "filters": {
+                                "all_of": [
+                                    {
+                                        "test": "has_equipment",
+                                        "domain": "hand",
+                                        "subject": "other",
+                                        "value": "pb:orb2"
+                                    },
+                                    {
+                                        "test": "is_mark_variant",
+                                        "subject": "self",
+                                        "value": 0
+                                    }
+                                ]
+                            },
+                            "event": "pb:orb2"
+                        }
+                    },
+                    {
+                        "interact_text": "Place Orb",
+                        "swing": true,
+                        "play_sounds": "beacon.activate",
+                        "use_item": true,
+                        "on_interact": {
+                            "filters": {
+                                "all_of": [
+                                    {
+                                        "test": "has_equipment",
+                                        "domain": "hand",
+                                        "subject": "other",
+                                        "value": "pb:orb2"
+                                    },
+                                    {
+                                        "test": "is_mark_variant",
+                                        "subject": "self",
+                                        "value": 1
+                                    }
+                                ]
+                            },
+                            "event": "pb:orb1i2"
+                        }
+                    },
+                    {
+                        "interact_text": "Place Orb",
+                        "swing": true,
+                        "play_sounds": "beacon.activate",
+                        "use_item": true,
+                        "on_interact": {
+                            "filters": {
+                                "all_of": [
+                                    {
+                                        "test": "has_equipment",
+                                        "domain": "hand",
+                                        "subject": "other",
+                                        "value": "pb:orb2"
+                                    },
+                                    {
+                                        "test": "is_mark_variant",
+                                        "subject": "self",
+                                        "value": 3
+                                    }
+                                ]
+                            },
+                            "event": "pb:orb2i3"
+                        }
+                    },
+                    {
+                        "interact_text": "Place Orb",
+                        "swing": true,
+                        "play_sounds": "beacon.activate",
+                        "use_item": true,
+                        "on_interact": {
+                            "filters": {
+                                "all_of": [
+                                    {
+                                        "test": "has_equipment",
+                                        "domain": "hand",
+                                        "subject": "other",
+                                        "value": "pb:orb2"
+                                    },
+                                    {
+                                        "test": "is_mark_variant",
+                                        "subject": "self",
+                                        "value": 5
+                                    }
+                                ]
+                            },
+                            "event": "pb:orb1i2i3"
+                        }
+                    },
+                    {
+                        "interact_text": "Place Orb",
+                        "swing": true,
+                        "play_sounds": "beacon.activate",
+                        "use_item": true,
+                        "on_interact": {
+                            "filters": {
+                                "all_of": [
+                                    {
+                                        "test": "has_equipment",
+                                        "domain": "hand",
+                                        "subject": "other",
+                                        "value": "pb:orb3"
+                                    },
+                                    {
+                                        "test": "is_mark_variant",
+                                        "subject": "self",
+                                        "value": 0
+                                    }
+                                ]
+                            },
+                            "event": "pb:orb3"
+                        }
+                    },
+                    {
+                        "interact_text": "Place Orb",
+                        "swing": true,
+                        "play_sounds": "beacon.activate",
+                        "use_item": true,
+                        "on_interact": {
+                            "filters": {
+                                "all_of": [
+                                    {
+                                        "test": "has_equipment",
+                                        "domain": "hand",
+                                        "subject": "other",
+                                        "value": "pb:orb3"
+                                    },
+                                    {
+                                        "test": "is_mark_variant",
+                                        "subject": "self",
+                                        "value": 1
+                                    }
+                                ]
+                            },
+                            "event": "pb:orb1i3"
+                        }
+                    },
+                    {
+                        "interact_text": "Place Orb",
+                        "swing": true,
+                        "play_sounds": "beacon.activate",
+                        "use_item": true,
+                        "on_interact": {
+                            "filters": {
+                                "all_of": [
+                                    {
+                                        "test": "has_equipment",
+                                        "domain": "hand",
+                                        "subject": "other",
+                                        "value": "pb:orb3"
+                                    },
+                                    {
+                                        "test": "is_mark_variant",
+                                        "subject": "self",
+                                        "value": 2
+                                    }
+                                ]
+                            },
+                            "event": "pb:orb2i3"
+                        }
+                    },
+                    {
+                        "interact_text": "Place Orb",
+                        "swing": true,
+                        "play_sounds": "beacon.activate",
+                        "use_item": true,
+                        "on_interact": {
+                            "filters": {
+                                "all_of": [
+                                    {
+                                        "test": "has_equipment",
+                                        "domain": "hand",
+                                        "subject": "other",
+                                        "value": "pb:orb3"
+                                    },
+                                    {
+                                        "test": "is_mark_variant",
+                                        "subject": "self",
+                                        "value": 4
+                                    }
+                                ]
+                            },
+                            "event": "pb:orb1i2i3"
+                        }
+                    }
+                ]
+            },
+            "minecraft:damage_sensor": {
+                "triggers": [
+                    {
+                        "cause": "all",
+                        "deals_damage": false
+                    }
+                ]
+            },
+            "minecraft:conditional_bandwidth_optimization": {},
+            "minecraft:fire_immune": {},
+            "minecraft:collision_box": {
+                "width": 0.7,
+                "height": 1
+            },
+            "minecraft:scale": {
+                "value": 1.0
+            },
+            "minecraft:knockback_resistance": {
+                "value": 1.0
+            },
+            "minecraft:push_through": {
+                "value": 1.0
+            },
+            "minecraft:health": {
+                "value": 50,
+                "max": 50
+            },
+            "minecraft:physics": {}
+        },
+        "events": {
+            "minecraft:entity_spawned": {
+                "add": {
+                    "component_groups": [
+                        "pb:orb0"
+                    ]
+                }
+            },
+            "pb:orb1": {
+                "add": {
+                    "component_groups": [
+                        "pb:orb1"
+                    ]
+                }
+            },
+            "pb:orb1i2": {
+                "add": {
+                    "component_groups": [
+                        "pb:orb1i2"
+                    ]
+                }
+            },
+            "pb:orb1i3": {
+                "add": {
+                    "component_groups": [
+                        "pb:orb1i3"
+                    ]
+                }
+            },
+            "pb:orb2": {
+                "add": {
+                    "component_groups": [
+                        "pb:orb2"
+                    ]
+                }
+            },
+            "pb:orb2i3": {
+                "add": {
+                    "component_groups": [
+                        "pb:orb2i3"
+                    ]
+                }
+            },
+            "pb:orb3": {
+                "add": {
+                    "component_groups": [
+                        "pb:orb3"
+                    ]
+                }
+            },
+            "pb:orb1i2i3": {
+                "add": {
+                    "component_groups": [
+                        "pb:orb1i2i3"
+                    ]
+                }
+            }
+        }
+    }
+}

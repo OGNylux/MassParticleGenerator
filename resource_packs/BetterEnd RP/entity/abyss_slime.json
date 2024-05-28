@@ -1,0 +1,32 @@
+{
+	"format_version": "1.10.0",
+	"minecraft:client_entity": {
+		"description": {
+			"identifier": "pb:abyss_slime",
+			"materials": {
+				"default": "entity_alphatest",
+				"transparent": "slime_outer"
+			},
+			"textures": {
+				"default": "textures/entity/abyss_slime"
+			},
+			"geometry": {
+				"default": "geometry.abyss_slime"
+			},
+			"animations": {
+			  "walk": "animation.ender_slime.walk",
+			  "move_controller": "controller.animation.slime.walk"
+			},
+			"scripts": {
+			  "animate": [
+				"move_controller"
+			  ]
+			},
+			"spawn_egg": {
+				"base_color": "#ff9900",
+				"overlay_color": "#4e2c15"
+			},
+			"render_controllers": ["controller.render.abyss_slime"]
+		}
+	}
+}

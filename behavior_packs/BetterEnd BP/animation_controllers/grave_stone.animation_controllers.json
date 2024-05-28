@@ -1,0 +1,54 @@
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+        "controller.animation.grave_stone": {
+            "initial_state": "default",
+            "states": {
+                "default": {
+                    "transitions": [
+                        {
+                            "grave_stone": "query.mark_variant == 1"
+                        },
+                        {
+                            "get_items": "query.mark_variant == 2"
+                        }
+                    ]
+                },
+                "grave_stone": {
+                    "transitions": [
+                        {
+                            "default": "query.mark_variant != 1"
+                        },
+                        {
+                            "get_items": "query.mark_variant == 2"
+                        }
+                    ],
+                    "on_entry": [
+                        "/execute as @e[r=1,c=1,type=pb:grave_stone] run tp @e[type=item,r=8] @s",
+						"/execute as @e[r=1,c=1,type=pb:grave_stone] run tp @e[type=item,r=8] @s",
+						"/execute as @e[r=1,c=1,type=pb:grave_stone] run tp @e[type=item,r=8] @s",
+						"/execute as @e[r=1,c=1,type=pb:grave_stone] run tp @e[type=item,r=8] @s",
+						"/execute as @e[r=1,c=1,type=pb:grave_stone] run tp @e[type=item,r=8] @s",
+                        "/event entity @s pb:restart"
+					
+                    ]
+                },
+                "get_items": {
+                    "transitions": [
+                        {
+                            "default": "query.mark_variant != 2"
+                        },
+                        {
+                            "grave_stone": "query.mark_variant == 1"
+                        }
+                    ],
+                    "on_entry": [
+                        "/execute as @e[r=1,c=1,type=pb:grave_stone] run kill @e[type=pb:grave_stone,r=2]",
+                        "/event entity @s pb:restart"
+					
+                    ]
+                }
+            }
+        }
+    }
+}

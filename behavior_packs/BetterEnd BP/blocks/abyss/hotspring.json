@@ -1,0 +1,39 @@
+{
+  "format_version": "1.20.1",
+  "minecraft:block": {
+      "description": {
+          "identifier": "pb:hotspring",
+          "menu_category": {
+              "category": "construction",
+              "group": "itemGroup.name.coral_decorations"
+          }
+      },
+      "components": {
+        "minecraft:light_emission": 12,
+          "minecraft:geometry": "geometry.hotspring",
+          "minecraft:selection_box":{
+              "origin": [
+                  -8,
+                  0,
+                  -8
+              ],
+              "size": [
+                  16,
+                  16,
+                  16
+              ]
+          },
+          "minecraft:material_instances": {
+              "*": {
+                  "texture": "hotspring"
+              }
+          },
+          "minecraft:destructible_by_mining": {
+            "seconds_to_destroy": 0.6
+        },
+        "minecraft:destructible_by_explosion": {
+            "explosion_resistance": 0.6
+        }
+      }
+  }
+}

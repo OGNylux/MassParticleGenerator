@@ -1,0 +1,14 @@
+{
+    "format_version": "1.12.0",
+    "minecraft:item": {
+      "description": {
+        "identifier": "pb:crystalized_pickaxe",
+        "category": "Items"
+      },
+  
+      "components": {
+        "minecraft:icon": "crystalized_pickaxe"
+      }
+    }
+  }
+  

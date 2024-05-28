@@ -1,0 +1,81 @@
+{
+    "format_version": "1.12.0",
+    "minecraft:entity": {
+        "description": {
+            "identifier": "pb:proj",
+            "is_spawnable": false,
+            "is_summonable": false,
+            "is_experimental": false
+        },
+        "component_groups": {
+            "despawn": {
+                "minecraft:instant_despawn": {}
+            }
+        },
+        "components": {
+            "minecraft:collision_box": {
+                "width": 0.31,
+                "height": 0.31
+            },
+            "minecraft:projectile": {
+                "on_hit": {
+                    "impact_damage": {
+                        "damage": 5,
+                        "knockback": true,
+                        "catch_fire": true,
+                        "semi_random_diff_damage": false
+                    },
+                    "catch_fire": true
+                },
+                "power": 1.5,
+                "gravity": 0.00,
+                "inertia": 1.5,
+                "liquid_inertia": 1,
+                "anchor": 1,
+                "offset": [
+                    0,
+                    0,
+                    0
+                ],
+                "semi_random_diff_damage": true,
+                "uncertainty_base": 1.0,
+                "reflect_on_hurt": true
+            },
+            "minecraft:timer": {
+                "time": 0.5,
+                "time_down_event": {
+                    "event": "despawn"
+                }
+            },
+            "minecraft:damage_sensor": {
+                "triggers": [
+                    {
+                        "cause": "all",
+                        "deals_damage": false
+                    }
+                ]
+            },
+            "minecraft:physics": {},
+            "minecraft:pushable": {
+                "is_pushable": true,
+                "is_pushable_by_piston": true
+            },
+            "minecraft:conditional_bandwidth_optimization": {
+                "default_values": {
+                    "max_optimized_distance": 80.0,
+                    "max_dropped_ticks": 7,
+                    "use_motion_prediction_hints": true
+                }
+            }
+        },
+        "events": {
+            "despawn": {
+                "add": {
+                    "component_groups": [
+                        "despawn"
+                    ]
+                }
+            }
+        }
+    }
+}

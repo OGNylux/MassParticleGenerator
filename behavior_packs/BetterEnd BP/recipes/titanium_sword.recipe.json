@@ -1,0 +1,28 @@
+{
+    "format_version": "1.12",
+    "minecraft:recipe_shaped": {
+        "description": {
+            "identifier": "pb:titanium_sword"
+        },
+        "tags": [
+            "crafting_table"
+        ],
+        "pattern": [
+            "t",
+            "t",
+            "/"
+        ],
+        "key": {
+            "t": {
+                "item": "pb:titanium_ingot"
+            },
+            "/": {
+                "item": "minecraft:stick"
+            }
+        },
+        "result": {
+            "item": "pb:titanium_sword",
+            "count": 1
+        }
+    }
+}

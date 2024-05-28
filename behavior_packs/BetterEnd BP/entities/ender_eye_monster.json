@@ -1,0 +1,160 @@
+{
+  "format_version": "1.14.0",
+  "minecraft:entity": {
+  "description": {
+          "identifier": "pb:ender_eye_monster",
+          "is_summonable": true,
+          "is_spawnable": true,
+          "is_experimental": false,
+          "properties": {
+            "pb:spawning": { "default": true, "client_sync": true, "type": "bool" },
+            "pb:dying": { "default": false, "client_sync": true, "type": "bool" }
+          }
+      },
+      "component_groups": {
+        "spawn_timer": {
+            "minecraft:timer": {
+              "time": 0.5,
+              "looping": false,
+              "time_down_event": {
+                "event": "pb:spawn_complete",
+                "target": "self"
+              }
+            }
+          },
+          "death_timer": {
+            "minecraft:timer": {
+              "time": 0.5,
+              "looping": false,
+              "time_down_event": {
+                "event": "pb:despawn",
+                "target": "self"
+              }
+            }
+          },
+          "despawn": {
+            "minecraft:instant_despawn": {
+              "remove_child_entities": false
+            }
+          }
+      },
+      "components": {
+          "minecraft:physics": {},
+          "minecraft:scale": {
+              "value": 1
+          },
+          "minecraft:collision_box": {
+              "width": 0.5,
+              "height": 0.5
+          },
+          "minecraft:behavior.look_at_target": {
+              "probability": 0.5,
+              "priority": 1,
+              "look_distance": 10
+          },
+          "minecraft:jump.static": {},
+          "minecraft:navigation.generic": {},
+          "minecraft:movement.generic": {},
+          "minecraft:movement": {
+              "value": 0.2
+          },
+          "minecraft:behavior.random_stroll": {},
+          "minecraft:push_through": {
+              "value": 1.0
+          },
+            "minecraft:damage_sensor": {
+              "triggers": [
+                  {
+                      "deals_damage": true
+                  }
+              ]
+          },
+          "minecraft:health": {
+              "value": 6,
+              "max": 6,
+              "min":1
+          },
+          "minecraft:environment_sensor": {
+            "triggers": [
+              {
+                "event": "pb:dying",
+                "target": "self",
+                "filters": [
+                  {
+                    "all_of": [
+                      {
+                        "test": "bool_property",
+                        "domain": "pb:dying",
+                        "value": false
+                      },
+                      {
+                        "test": "bool_property",
+                        "domain": "pb:spawning",
+                        "value": false
+                      },
+                      {
+                        "test": "actor_health",
+                        "operator": "<=",
+                        "value": 1
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "minecraft:attack": {
+              "damage": 2
+            },
+          "minecraft:behavior.nearest_attackable_target": {
+              "entity_types": [
+                  {
+                      "filters": 
+                      {
+                          "test": "is_family", "subject": "other", "value": "player" 
+                      }
+                  }
+              ],
+              "within_radius": 25
+          },
+          "minecraft:behavior.melee_attack": {
+              "attack_once": false,
+              "speed_multiplier": 1.0,
+              "track_target": false
+           
+          }
+      },
+      "events": {
+        "pb:spawn_complete": {
+            "set_property": {
+              "pb:spawning": false
+            },
+            "remove": {
+              "component_groups": [
+                "spawn_timer"
+              ]
+            }
+          },
+          "pb:dying": {
+            "set_property": {
+              "pb:dying": true
+            },
+            "add": {
+              "component_groups": ["death_timer"]
+            }
+          },
+          "pb:despawn": {
+            "add": {
+              "component_groups": ["despawn"]
+            }
+          },
+          "minecraft:entity_spawned": {
+            "add": {
+                "component_groups": [
+                    "spawn_timer"
+                ]
+            }
+          }
+      }
+  }
+}

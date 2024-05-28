@@ -1,0 +1,62 @@
+{
+	"format_version": "1.16.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.sapphire_chestplate",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 4,
+				"visible_bounds_offset": [0, 1, 0]
+			},
+			"bones": [
+				{
+					"name": "body",
+					"pivot": [0, 14, 0]
+				},
+				{
+					"name": "chestplate",
+					"parent": "body",
+					"pivot": [0, -10, 0],
+					"binding": "'body'",
+					"cubes": [
+						{"origin": [-4, 1, -2], "size": [8, 13, 4], "inflate": 0.6, "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "arm_right",
+					"pivot": [-5, 12, 0]
+				},
+				{
+					"name": "arm_plate_right",
+					"parent": "arm_right",
+					"pivot": [-5, 2, 0],
+					"binding": "'rightarm'",
+					"cubes": [
+						{"origin": [-10.125, 11.8, -2.5], "size": [6, 3, 5], "inflate": 1.1, "pivot": [-6.625, 12.3, 0], "rotation": [0, 0, -20], "uv": [14, 17]},
+						{"origin": [-7.75, 2, -2], "size": [3, 12, 4], "inflate": 0.9, "uv": [0, 17]},
+						{"origin": [-11.40988, 15.45744, 0.4], "size": [6, 7, 0], "pivot": [-7.90988, 12.95744, -1.1], "rotation": [0, 0, -20], "uv": [0, 33]},
+						{"origin": [-9.40988, 15.45744, 1.4], "size": [6, 9, 0], "pivot": [-7.90988, 12.95744, -1.1], "rotation": [0, 0, -20], "uv": [24, 8]}
+					]
+				},
+				{
+					"name": "arm_left",
+					"pivot": [5, 12, 0]
+				},
+				{
+					"name": "arm_plate_left",
+					"parent": "arm_left",
+					"pivot": [5, 2, 0],
+					"binding": "'leftarm'",
+					"cubes": [
+						{"origin": [4.75, 2, -2], "size": [3, 12, 4], "inflate": 0.9, "uv": [14, 25]},
+						{"origin": [4, 11.8, -2.5], "size": [6, 3, 5], "inflate": 1.1, "pivot": [6.5, 12.3, 0], "rotation": [0, 0, 20], "uv": [24, 0]},
+						{"origin": [5.40988, 15.45744, 0.4], "size": [6, 7, 0], "pivot": [7.90988, 12.95744, -1.1], "rotation": [0, 0, 20], "uv": [28, 34]},
+						{"origin": [3.40988, 15.45744, 1.4], "size": [6, 9, 0], "pivot": [7.90988, 12.95744, -1.1], "rotation": [0, 0, 20], "uv": [28, 25]}
+					]
+				}
+			]
+		}
+	]
+}

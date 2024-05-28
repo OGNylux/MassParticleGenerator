@@ -1,0 +1,33 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "pb:crystal_golem",
+            "materials": {
+                "default": "skeleton"
+            },
+            "textures": {
+                "default": "textures/entity/crystal_golem"
+            },
+            "geometry": {
+                "default": "geometry.crystal_golem"
+            },
+            "animations": {
+                "attack": "animation.crystal_golem.attack",
+                "walk": "animation.crystal_golem.walk",
+                "idle": "animation.crystal_golem.idle",
+                "controller": "controller.animation.crystal_golem"
+            },
+            "scripts": {
+                "animate": [
+                    "controller"
+                ]
+            },
+			"spawn_egg": {
+				"base_color": "#414e52",
+				"overlay_color": "#0ca2bd"
+			},
+            "render_controllers": ["controller.render.basic"]
+        }
+    }
+}

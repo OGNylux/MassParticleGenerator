@@ -1,0 +1,22 @@
+{
+    "format_version": "1.20.10",
+    "minecraft:block": {
+        "description": {
+            "identifier": "pb:end_shroom_block_blue",
+			"menu_category": {
+				"category": "construction",
+				"group": "itemGroup.name.mushroom"
+			}
+        },
+        "components": {
+            "minecraft:light_emission": 11,
+
+            "minecraft:destructible_by_mining": {
+                "seconds_to_destroy": 0.3
+            },
+            "minecraft:destructible_by_explosion": {
+                "explosion_resistance": 0.2
+            }
+        }
+    }
+}

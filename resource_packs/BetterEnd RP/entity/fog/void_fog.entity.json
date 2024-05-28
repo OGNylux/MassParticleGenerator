@@ -1,0 +1,35 @@
+{
+    "format_version": "1.20.0",
+    "minecraft:client_entity": {
+      "description": {
+        "identifier": "pb:void_fog",
+        "materials": {
+          "default": "entity_alphatest"
+        },
+        "geometry": {
+          "default": "geometry.fog"
+        },
+        "textures": {
+          "default": "textures/empty"
+        },
+        "particle_effects": {
+          "fog": "pb:void_fog"
+        },
+        "animations": {
+          "fog": "animation.ambient.fog"
+        },
+        "scripts": {
+          "animate": [
+            "fog"
+          ]
+        },
+        "render_controllers": [
+          "controller.render.default"
+        ],
+        "spawn_egg": {
+          "base_color": "#6d6d6d",
+          "overlay_color": "#404040"
+        }
+      }
+    }
+  }

@@ -1,0 +1,24 @@
+{
+  "format_version": "1.12.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "pb:bag",
+      "materials": {
+        "default": "entity"
+      },
+      "textures": {
+          "bag_on": "textures/entity/backpack",
+          "bag_off": "textures/entity/backpack2"
+      },
+      "geometry": {
+        "default": "geometry.backPack"
+      },
+      "spawn_egg": {
+        "texture": "backpack"
+      },
+      "render_controllers": [
+        "controller.render.bag"
+      ]
+    }
+  }
+}

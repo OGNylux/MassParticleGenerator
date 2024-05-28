@@ -1,0 +1,36 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.crystal_enderman.root": {
+      "initial_state": "idle",
+      "states": {
+        "idle": {
+          "animations": [
+            "idle",
+            {
+              "scary_face": "q.has_target"
+            }
+          ],
+          "transitions": [
+            {
+              "walk": "q.ground_speed >= 0.7"
+            }
+          ],
+          "blend_transition": 0.2
+        },
+        "walk": {
+          "animations": ["walk",
+          {
+            "scary_face": "q.has_target"
+          }],
+          "transitions": [
+            {
+              "idle": "q.ground_speed < 0.7"
+            }
+          ],
+          "blend_transition": 0.2
+        }
+      }
+    }
+  }
+}

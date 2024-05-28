@@ -1,0 +1,14 @@
+{
+	"format_version": "1.10.0",
+	"render_controllers": {
+		"controller.render.abyss_slime": {
+			"geometry": "Geometry.default",
+			"materials": [ { "*": "Material.default" }, 
+			  { "transp": "Material.transparent" }
+			],
+			"textures": [ "Texture.default" ],
+			"is_hurt_color": {},
+			"on_fire_color": {}
+		  }
+	}
+}

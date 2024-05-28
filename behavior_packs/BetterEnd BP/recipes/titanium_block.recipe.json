@@ -1,0 +1,25 @@
+{
+    "format_version": "1.12",
+    "minecraft:recipe_shaped": {
+        "description": {
+            "identifier": "pb:titanium_block"
+        },
+        "tags": [
+            "crafting_table"
+        ],
+        "pattern": [
+            "ttt",
+            "ttt",
+            "ttt"
+        ],
+        "key": {
+            "t": {
+                "item": "pb:titanium_ingot"
+            }
+        },
+        "result": {
+            "item": "pb:titanium_block",
+            "count": 1
+        }
+    }
+}

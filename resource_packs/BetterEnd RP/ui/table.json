@@ -1,0 +1,29 @@
+{
+    "namespace": "soul_controls",
+    
+
+
+    "table_column":{
+        "anchor_from": "top_left",
+        "anchor_to": "top_left",
+        "size": [
+            "37%",
+            "100%"
+        ],
+        "type": "stack_panel",
+        "orientation": "vertical"
+        
+
+    },
+    "table": {
+        "type": "stack_panel",
+        "orientation": "horizontal",
+        "anchor_from": "center",
+        "anchor_to": "center",
+        "size": [
+            "100%",
+            "100%"
+        ]
+        
+    }
+}

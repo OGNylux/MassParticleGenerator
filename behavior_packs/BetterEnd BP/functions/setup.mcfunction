@@ -1,0 +1,2 @@
+scoreboard objectives add final_fight dummy
+scoreboard objectives add pillar_destroy dummy

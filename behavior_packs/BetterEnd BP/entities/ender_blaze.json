@@ -1,0 +1,75 @@
+{
+    "format_version": "1.14.0",
+    "minecraft:entity": {
+        "description": {
+            "identifier": "pb:ender_blaze",
+            "is_summonable": true,
+            "is_spawnable": true,
+            "is_experimental": false
+        },
+        "components": {
+            "minecraft:boss": {
+                "hud_range": 55,
+                "name": "Ender Blaze",
+                "should_darken_sky": true
+            },
+            "minecraft:loot": {
+                "table": "loot_tables/entities/orb2.json"
+            },
+            "minecraft:physics": {},
+            "minecraft:scale": {
+                "value": 1
+            },
+            "minecraft:collision_box": {
+                "width": 0.5,
+                "height": 0.5
+            },
+            "minecraft:behavior.look_at_target": {
+                "probability": 0.5,
+                "priority": 1,
+                "look_distance": 10
+            },
+            "minecraft:jump.static": {},
+            "minecraft:navigation.generic": {},
+            "minecraft:movement.generic": {},
+            "minecraft:movement": {
+                "value": 0.2
+            },
+            "minecraft:behavior.random_stroll": {},
+            "minecraft:push_through": {
+                "value": 1.0
+            },
+            "minecraft:damage_sensor": {
+                "triggers": [
+                    {
+                        "deals_damage": true
+                    }
+                ]
+            },
+            "minecraft:health": {
+                "value": 5,
+                "max": 5
+            },
+            "minecraft:attack": {
+                "damage": 2
+            },
+            "minecraft:behavior.nearest_attackable_target": {
+                "entity_types": [
+                    {
+                        "filters": {
+                            "test": "is_family",
+                            "subject": "other",
+                            "value": "player"
+                        }
+                    }
+                ],
+                "within_radius": 25
+            },
+            "minecraft:behavior.melee_attack": {
+                "attack_once": false,
+                "speed_multiplier": 1.0,
+                "track_target": false
+            }
+        }
+    }
+}

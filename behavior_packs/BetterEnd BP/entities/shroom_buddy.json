@@ -1,0 +1,207 @@
+{
+  "format_version": "1.19.10",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "pb:shroom_buddy",
+      "is_summonable": true,
+      "is_spawnable": true,
+      "is_experimental": false,
+      "properties": {
+        "pb:spawning": { "default": true, "client_sync": true, "type": "bool" },
+        "pb:dying": { "default": false, "client_sync": true, "type": "bool" }
+      }
+    },
+    "component_groups": {
+      "spawn_timer": {
+        "minecraft:timer": {
+          "time": 0.5,
+          "looping": false,
+          "time_down_event": {
+            "event": "pb:spawn_complete",
+            "target": "self"
+          }
+        }
+      },
+      "death_timer": {
+        "minecraft:timer": {
+          "time": 0.5,
+          "looping": false,
+          "time_down_event": {
+            "event": "pb:despawn",
+            "target": "self"
+          }
+        }
+      },
+      "despawn": {
+        "minecraft:instant_despawn": {
+          "remove_child_entities": false
+        }
+      }
+    },
+    "components": {
+      "minecraft:sittable": {},
+      "minecraft:behavior.stay_while_sitting": {
+        "priority": 3
+      },
+      "minecraft:is_tamed": {},
+      "minecraft:behavior.follow_owner": {
+        "start_distance": 12,
+        "stop_distance": 2,
+        "can_teleport": true,
+        "priority": 6
+      },
+      "minecraft:follow_range": {
+        "value": 64,
+        "max": 64
+      },
+      "minecraft:behavior.random_stroll": {
+        "priority": 8
+      },
+      "minecraft:physics": {},
+      "minecraft:scale": {
+        "value": 1
+      },
+      "minecraft:push_through": {
+        "value": 0
+      },
+      "minecraft:is_stackable": {},
+      "minecraft:collision_box": {
+        "width": 0.5,
+        "height": 1
+      },
+      "minecraft:behavior.look_at_target": {
+        "probability": 0.5,
+        "priority": 6,
+        "look_distance": 10
+      },
+      "minecraft:movement": {
+        "value": 0.2
+      },
+      "minecraft:navigation.generic": {
+        "can_swim": false,
+        "can_walk": true,
+        "can_breach": true,
+        "can_sink": true,
+        "avoid_damage_blocks": true,
+        "can_path_over_water": false
+      },
+      "minecraft:movement.generic": {},
+      "minecraft:jump.static": {},
+      "minecraft:behavior.float": {
+        "priority": 0
+      },
+      "minecraft:behavior.look_at_player": {
+        "priority": 6,
+        "target_distance": 6.0,
+        "probability": 0.02
+      },
+      "minecraft:nameable": {
+        "allow_name_tag_renaming": true,
+        "always_show": false
+      },
+      "minecraft:pushable": {
+        "is_pushable": true,
+        "is_pushable_by_piston": true
+      },
+      "minecraft:health": {
+        "value": 101,
+        "max": 101,
+        "min":1
+      },
+      "minecraft:environment_sensor": {
+        "triggers": [
+          {
+            "event": "pb:dying",
+            "target": "self",
+            "filters": [
+              {
+                "all_of": [
+                  {
+                    "test": "bool_property",
+                    "domain": "pb:dying",
+                    "value": false
+                  },
+                  {
+                    "test": "bool_property",
+                    "domain": "pb:spawning",
+                    "value": false
+                  },
+                  {
+                    "test": "actor_health",
+                    "operator": "<=",
+                    "value": 1
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "minecraft:attack": {
+        "damage": 8
+      },
+      "minecraft:behavior.owner_hurt_by_target": {
+        "priority": 1
+      },
+      "minecraft:behavior.owner_hurt_target": {
+        "priority": 2
+      },
+      "minecraft:behavior.nearest_attackable_target": {
+        "priority": 4,
+        "attack_owner": false,
+        "reselect_targets": true,
+        "entity_types": [
+          {
+            "filters": {
+              "test": "is_family",
+              "subject": "other",
+              "value": "monster"
+            }
+          }
+        ],
+        "within_radius": 25
+      },
+      "minecraft:behavior.melee_attack": {
+        "attack_once": false,
+        "track_target": true,
+        "speed_multiplier": 1.2,
+        "priority": 4
+      },
+      "minecraft:knockback_resistance": {
+        "value": 0.5
+      }
+    },
+    "events": {
+      "pb:spawn_complete": {
+        "set_property": {
+          "pb:spawning": false
+        },
+        "remove": {
+          "component_groups": [
+            "spawn_timer"
+          ]
+        }
+      },
+      "pb:dying": {
+        "set_property": {
+          "pb:dying": true
+        },
+        "add": {
+          "component_groups": ["death_timer"]
+        }
+      },
+      "pb:despawn": {
+        "add": {
+          "component_groups": ["despawn"]
+        }
+      },
+      "minecraft:entity_spawned": {
+        "add": {
+          "component_groups": [
+            "spawn_timer"
+          ]
+        }
+      }
+    }
+  }
+}

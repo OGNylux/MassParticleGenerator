@@ -1,0 +1,323 @@
+{
+	"resource_pack_name": "better_end",
+	"texture_name": "atlas.terrain",
+	"padding": 5,
+	"num_mip_levels": 2,
+	"texture_data": {
+		"ender_vines": {
+			"textures": "textures/blocks/3D_blocks/ender_vines"
+		},
+		"ender_leaves_blue": {
+			"textures": "textures/blocks/ender_leaves_blue"
+		},
+		"ender_leaves_purple": {
+			"textures": "textures/blocks/ender_leaves_purple"
+		},
+		"ender_grass_block_side": {
+			"textures": "textures/blocks/ender_grass/ender_grass_block_side"
+		},
+		"ender_grass_block_top": {
+			"textures": {
+				"variations": [
+					{
+						"path": "textures/blocks/ender_grass/ender_grass_block_top_0"
+					},
+					{
+						"path": "textures/blocks/ender_grass/ender_grass_block_top_1"
+					},
+					{
+						"path": "textures/blocks/ender_grass/ender_grass_block_top_2"
+					},
+					{
+						"path": "textures/blocks/ender_grass/ender_grass_block_top_3"
+					},
+					{
+						"path": "textures/blocks/ender_grass/ender_grass_block_top_4"
+					}
+				]
+			}
+		},
+		"ender_log": {
+			"textures": {
+				"variations": [
+					{
+						"path": "textures/blocks/ender_log/ender_log_0"
+					},
+					{
+						"path": "textures/blocks/ender_log/ender_log_1"
+					},
+					{
+						"path": "textures/blocks/ender_log/ender_log_2"
+					},
+					{
+						"path": "textures/blocks/ender_log/ender_log_3"
+					}
+				]
+			}
+		},
+		"ender_shroom": {
+			"textures": "textures/blocks/3D_blocks/ender_shroom"
+		},
+		"ender_grass": {
+			"textures": "textures/blocks/3D_blocks/ender_grass"
+		},
+		"ender_planks": {
+			"textures": "textures/blocks/ender_planks"
+		},
+		"ender_ore": {
+			"textures": {
+				"variations": [
+					{
+						"path": "textures/blocks/ender_ore/ender_ore_0"
+					},
+					{
+						"path": "textures/blocks/ender_ore/ender_ore_1"
+					},
+					{
+						"path": "textures/blocks/ender_ore/ender_ore_2"
+					},
+					{
+						"path": "textures/blocks/ender_ore/ender_ore_3"
+					}
+				]
+			}
+		},
+		"end_stone_pillar": {
+			"textures": {
+				"variations": [
+					{
+						"path": "textures/blocks/end_stone_pillar/end_stone_pillar_0"
+					},
+					{
+						"path": "textures/blocks/end_stone_pillar/end_stone_pillar_1"
+					},
+					{
+						"path": "textures/blocks/end_stone_pillar/end_stone_pillar_2"
+					},
+					{
+						"path": "textures/blocks/end_stone_pillar/end_stone_pillar_3"
+					},
+					{
+						"path": "textures/blocks/end_stone_pillar/end_stone_pillar_4"
+					}
+				]
+			}
+		},
+		"chiseled_end_bricks": {
+			"textures": "textures/blocks/chiseled_end_bricks"
+		},
+		"cracked_end_bricks": {
+			"textures": "textures/blocks/cracked_end_bricks"
+		},
+		"dark_end_bricks": {
+			"textures": "textures/blocks/dark_end_bricks"
+		},
+		"chiseled_dark_end_bricks": {
+			"textures": "textures/blocks/chiseled_dark_end_bricks"
+		},
+		"dark_end_stone_pillar": {
+			"textures": "textures/blocks/dark_end_stone_pillar"
+		},
+		"abyss_fruit": {
+			"textures": "textures/blocks/3D_blocks/abyss_fruit"
+		},
+		"abyss_grass": {
+			"textures": "textures/blocks/3D_blocks/abyss_grass"
+		},
+		"abyss_planks": {
+			"textures": "textures/blocks/abyss_planks"
+		},
+		"abyss_log": {
+			"textures": {
+				"variations": [
+					{
+						"path": "textures/blocks/abyss_log/abyss_log_0"
+					},
+					{
+						"path": "textures/blocks/abyss_log/abyss_log_1"
+					},
+					{
+						"path": "textures/blocks/abyss_log/abyss_log_2"
+					}
+				]
+			}
+		},
+		"abyss_leaves_light": {
+			"textures": "textures/blocks/abyss_leaves_light"
+		},
+		"abyss_leaves_dark": {
+			"textures": "textures/blocks/abyss_leaves_dark"
+		},
+		"abyss_grass_block_side": {
+			"textures": "textures/blocks/abyss_grass/abyss_grass_block_side"
+		},
+		"abyss_grass_block_top": {
+			"textures": {
+				"variations": [
+					{
+						"path": "textures/blocks/abyss_grass/abyss_grass_block_top_0"
+					},
+					{
+						"path": "textures/blocks/abyss_grass/abyss_grass_block_top_1"
+					},
+					{
+						"path": "textures/blocks/abyss_grass/abyss_grass_block_top_2"
+					},
+					{
+						"path": "textures/blocks/abyss_grass/abyss_grass_block_top_3"
+					},
+					{
+						"path": "textures/blocks/abyss_grass/abyss_grass_block_top_4"
+					}
+				]
+			}
+		},
+		"geyser_block_yellow": {
+			"textures": "textures/blocks/geyser_block_yellow"
+		},
+		"geyser_block_orange": {
+			"textures": "textures/blocks/geyser_block_orange"
+		},
+		"geyser_block_brown": {
+			"textures": "textures/blocks/geyser_block_brown"
+		},
+		"geyser_block_red": {
+			"textures": "textures/blocks/geyser_block_red"
+		},
+		"geyser_block_black": {
+			"textures": "textures/blocks/geyser_block_black"
+		},
+		"geyser_block_bronze": {
+			"textures": "textures/blocks/geyser_block_bronze"
+		},
+		"geyser_block_gold": {
+			"textures": "textures/blocks/geyser_block_gold"
+		},
+		"geyser_block_ocher": {
+			"textures": "textures/blocks/geyser_block_ocher"
+		},
+		"void_grass_block_side": {
+			"textures": "textures/blocks/void_grass/void_grass_block_side"
+		},
+		"void_grass_block_top": {
+			"textures": {
+				"variations": [
+					{
+						"path": "textures/blocks/void_grass/void_grass_block_top_0"
+					},
+					{
+						"path": "textures/blocks/void_grass/void_grass_block_top_1"
+					},
+					{
+						"path": "textures/blocks/void_grass/void_grass_block_top_2"
+					},
+					{
+						"path": "textures/blocks/void_grass/void_grass_block_top_3"
+					},
+					{
+						"path": "textures/blocks/void_grass/void_grass_block_top_4"
+					}
+				]
+			}
+		},
+		"void_log_dark": {
+			"textures": "textures/blocks/void_log/void_log_dark"
+		},
+		"void_log": {
+			"textures": "textures/blocks/void_log/void_log"
+		},
+		"void_leaves": {
+			"textures": "textures/blocks/void_leaves"
+		},
+		"void_leaves_dark": {
+			"textures": "textures/blocks/void_leaves_dark"
+		},
+		"end_shroom_block_blue": {
+			"textures": "textures/blocks/end_shroom_block_blue"
+		},
+		"end_shroom_block_green": {
+			"textures": "textures/blocks/end_shroom_block_green"
+		},
+		"end_shroom_vines": {
+			"textures": "textures/blocks/3D_blocks/end_shroom_vines"
+		},
+		"end_shroom_glow_vines": {
+			"textures": "textures/blocks/3D_blocks/end_shroom_glow_vines"
+		},
+		"void_grass": {
+			"textures": "textures/blocks/3D_blocks/void_grass"
+		},
+		"crystal_grass_block_side": {
+			"textures": "textures/blocks/crystal_grass/crystal_grass_block_side"
+		},
+		"crystal_grass_block_top": {
+			"textures": {
+				"variations": [
+					{
+						"path": "textures/blocks/crystal_grass/crystal_grass_block_top_0"
+					},
+					{
+						"path": "textures/blocks/crystal_grass/crystal_grass_block_top_1"
+					},
+					{
+						"path": "textures/blocks/crystal_grass/crystal_grass_block_top_2"
+					},
+					{
+						"path": "textures/blocks/crystal_grass/crystal_grass_block_top_3"
+					},
+					{
+						"path": "textures/blocks/crystal_grass/crystal_grass_block_top_4"
+					}
+				]
+			}
+		},
+		"crystal_grass": {
+			"textures": "textures/blocks/3D_blocks/crystal_grass"
+		},
+		"crystalized_block_green": {
+			"textures": "textures/blocks/crystalized_block_green"
+		},
+		"crystalized_block_light_blue": {
+			"textures": "textures/blocks/crystalized_block_light_blue"
+		},
+		"crystalized_block_blue": {
+			"textures": "textures/blocks/crystalized_block_blue"
+		},
+		"crystal_glass": {
+			"textures": "textures/blocks/crystal_glass"
+		},
+		"hotspring": {
+			"textures": "textures/blocks/3D_blocks/hotspring"
+		},
+		"crystal_bud_stage_0": {
+			"textures": "textures/blocks/3D_blocks/crystal_bud/crystal_bud_0"
+		},
+		"crystal_bud_stage_1": {
+			"textures": "textures/blocks/3D_blocks/crystal_bud/crystal_bud_1"
+		},
+		"crystal_bud_stage_2": {
+			"textures": "textures/blocks/3D_blocks/crystal_bud/crystal_bud_2"
+		},
+		"enderite_block": {
+			"textures": "textures/blocks/enderite_block"
+		},
+		"amethyst_block": {
+			"textures": "textures/blocks/amethyst_block"
+		},
+		"titanium_ore": {
+			"textures": "textures/blocks/titanium_ore"
+		},
+		"titanium_block": {
+			"textures": "textures/blocks/titanium_block"
+		},
+		"ender_vines_big": {
+			"textures": "textures/blocks/ender_vines_big"
+		},
+		"end_stone": {
+			"textures": "textures/blocks/end_stone"
+		},
+		"ender_lily": {
+			"textures": "textures/blocks/ender_lily"
+		}
+	}
+}

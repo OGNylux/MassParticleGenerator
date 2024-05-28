@@ -1,0 +1,35 @@
+{
+    "format_version": "1.19.60",
+    "minecraft:block": {
+        "description": {
+            "identifier": "pb:ender_shroom",
+			"menu_category": {
+				"category": "construction",
+				"group": "itemGroup.name.mushroom"
+			}
+        },
+        "components": {
+            "minecraft:light_emission": 6,
+            "minecraft:geometry": "geometry.ender_shroom",
+			"minecraft:collision_box":false,
+            "minecraft:selection_box":{
+                "origin": [
+                    -4,
+                    0,
+                    -4
+                ],
+                "size": [
+                    8,
+                    8,
+                    8
+                ]
+            },
+            "minecraft:material_instances": {
+                "*": {
+                    "texture": "ender_shroom",
+                    "render_method": "blend"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,58 @@
+/********************************************************
++*   (c) Mojang. All rights reserved                      *
++*   (c) Microsoft. All rights reserved.                  *
++*********************************************************/
+{
+  //---------------------------------------------------------------------------
+  // Common
+  //---------------------------------------------------------------------------
+  "npc_screen_contents/student": {
+
+    "bindings": [
+      {
+        "binding_name": "#student_view_visible",
+        
+        "binding_type": "global"
+      },
+      {
+        "binding_name": "#title_text",
+        "binding_name_override": "#text",
+        "binding_type": "global"
+      },
+      {
+        "source_property_name": "((#student_view_visible) and (not (#text = $npc_ui_title_trigger)))",
+        "target_property_name": "#visible",
+        "binding_type": "view"
+      }
+    ]
+  },
+  "npc_screen_contents": {
+    "modifications": [
+      {
+        "array_name": "controls",
+        "operation": "insert_back",
+        "value": {
+          "root@soul_ui.root": {
+            "bindings": [
+              {
+                "binding_name": "#student_view_visible",
+                
+                "binding_type": "global"
+              },
+              {
+                "binding_name": "#title_text",
+                "binding_name_override": "#text",
+                "binding_type": "global"
+              },
+              {
+                "source_property_name": "((#student_view_visible) and (#text = $npc_ui_title_trigger))",
+                "target_property_name": "#visible",
+                "binding_type": "view"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

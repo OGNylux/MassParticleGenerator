@@ -1,0 +1,24 @@
+{
+    "format_version": "1.12",
+    "minecraft:recipe_shaped": {
+        "description": {
+            "identifier": "pb:dark_end_stone_pillar"
+        },
+        "tags": [
+            "crafting_table"
+        ],
+        "pattern": [
+            "#",
+            "#"
+        ],
+        "key": {
+            "#": {
+                "item": "pb:dark_end_bricks"
+            }
+        },
+        "result": {
+            "item": "pb:dark_end_stone_pillar",
+            "count": 1
+        }
+    }
+}

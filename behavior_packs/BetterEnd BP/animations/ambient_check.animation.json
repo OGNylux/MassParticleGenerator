@@ -1,0 +1,15 @@
+{
+    "format_version": "1.19.50",
+    "animations": {
+        "animation.ambient_check": {
+            "loop": true,
+            "animation_length": 1.0,
+            "timeline": {
+                "0.0": "/execute as @a[r=30] run event entity @e[type=pb:biome_detector,tag=abyss] ambient_abyss",
+                "0.1": "/execute as @a[r=30] run event entity @e[type=pb:biome_detector,tag=void] ambient_void",
+                "0.2": "/execute as @a[r=30] run event entity @e[type=pb:biome_detector,tag=ender] ambient_ender",
+                "0.3": "/execute as @a[r=30] run event entity @e[type=pb:biome_detector,tag=crystal] ambient_crystal"
+            }
+        }
+    }
+}

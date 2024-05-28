@@ -1,0 +1,46 @@
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+        "controller.animation.endolager": {
+            "initial_state": "idle",
+            "states": {
+                "idle": {
+                    "animations": [
+                        "idle"
+                    ],
+                    "transitions": [
+                        {
+                            "attack_near": "query.mark_variant == 1"
+                        },
+                        {
+                            "attack": "query.mark_variant == 1"
+                        }
+                    ],
+                    "blend_transition": 0.2
+                },
+                "attack_near": {
+                    "animations": [
+                        "attack_near"
+                    ],
+                    "transitions": [
+                        {
+                            "idle": "query.mark_variant != 1"
+                        }
+                    ],
+                    "blend_transition": 0.2
+                },
+                "attack": {
+                    "animations": [
+                        "attack"
+                    ],
+                    "transitions": [
+                        {
+                            "idle": "query.mark_variant != 1"
+                        }
+                    ],
+                    "blend_transition": 0.2
+                }
+            }
+        }
+    }
+}

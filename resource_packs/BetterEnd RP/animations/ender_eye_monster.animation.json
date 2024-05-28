@@ -1,0 +1,49 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.ender_eye_monster.fly": {
+			"loop": true,
+			"bones": {
+				"tentacle": {
+					"rotation": ["-math.pow(math.sin(q.anim_time*100)*8,2)+0.8", 0, 0]
+				},
+				"tentacle2": {
+					"rotation": ["-math.pow(math.sin(q.anim_time*100)*8,2)+0.8", 0, 0]
+				},
+				"tentacle3": {
+					"rotation": ["-math.pow(math.sin(q.anim_time*100)*8,2)+0.8", 0, 0]
+				},
+				"tentacle4": {
+					"rotation": ["-math.pow(math.sin(q.anim_time*100)*8,2)+0.8", 0, 0]
+				},
+				"bone2": {
+					"rotation": ["-math.sin(q.anim_time*200)*20", 0, 0]
+				},
+				"bone3": {
+					"rotation": ["-math.sin(q.anim_time*200)*20", 0, 0]
+				},
+				"bone5": {
+					"rotation": ["-math.sin(q.anim_time*200)*20", 0, 0]
+				},
+				"bone6": {
+					"rotation": ["-math.sin(q.anim_time*200)*20", 0, 0]
+				},
+				"bone8": {
+					"rotation": ["-math.sin(q.anim_time*200)*20", 0, 0]
+				},
+				"bone9": {
+					"rotation": ["-math.sin(q.anim_time*200)*20", 0, 0]
+				},
+				"bone11": {
+					"rotation": ["-math.sin(q.anim_time*200)*20", 0, 0]
+				},
+				"bone12": {
+					"rotation": ["-math.sin(q.anim_time*200)*20", 0, 0]
+				},
+				"ender_eye_monster": {
+					"rotation": [0, 0, 0]
+				}
+			}
+		}
+	}
+}

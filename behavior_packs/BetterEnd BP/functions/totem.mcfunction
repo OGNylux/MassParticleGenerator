@@ -1,1 +1,0 @@
-effect @p regeneration 3 255

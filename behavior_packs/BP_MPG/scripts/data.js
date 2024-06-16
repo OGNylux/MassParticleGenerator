@@ -4,9 +4,10 @@ let counter = 1;
 
 class MassParticleGenerator {
     fogEntity = "pb:biome_detector"
+    cellDelay = 5;
+    columnDelay = 10;
     firstPosition = {};
     secondPosition = {};
-    savedLocation = {};
     entitySpacing = 30;
     maxRadius = 160;
     stop = false;
@@ -15,33 +16,37 @@ class MassParticleGenerator {
         counter = 1;
         this.stop = false;
 
+        const savedGameMode = player.getGameMode();
+        const savedLocation = player.location;
         const directionX = checkDirection(this.firstPosition.x, this.secondPosition.x);
         const directionZ = checkDirection(this.firstPosition.z, this.secondPosition.z);
         const yPosition = Math.abs(this.secondPosition.y - this.firstPosition.y) / 2 + Math.min(this.firstPosition.y, this.secondPosition.y);
 
+        player.setGameMode("spectator");
         player.teleport({x: this.firstPosition.x + directionX * (this.entitySpacing / 2), y: yPosition, z: this.firstPosition.z + directionZ * (this.entitySpacing / 2)});
 
         for (let z = 0; z < maxZ; z++) {
+            await sleep(this.columnDelay);
             for (let x = 0; x < maxX; x++) {
-                if(this.stop) { player.teleport(this.savedLocation); return; }
+                if(this.stop) { player.teleport(savedLocation); player.setGameMode(savedGameMode); return; }
                 let percentage = Number((counter / (maxX * maxZ))*100).toFixed(3);
                 player.onScreenDisplay.setActionBar(`finished row (${x+1}/${maxX}) of column (${z+1}/${maxZ}) (${percentage}%/100%)`);
                 player.onScreenDisplay.setTitle("MGP IS RUNNING", {
                     stayDuration: 2,
                     fadeInDuration: 0,
                     fadeOutDuration: 2,
-                    subtitle: "use !stop to stop MGP"
+                    subtitle: "use /scriptevent pb:stop to stop MGP"
                 });
-                await sleep(2);
+                await sleep(this.cellDelay);
                 func(x,z);
-                await sleep(2);
                 player.teleport({x: player.location.x + directionX * this.entitySpacing, y: yPosition, z: player.location.z});
 
                 counter++;
             }
-            player.teleport({x: player.location.x - directionX * (this.entitySpacing * maxX), y: yPosition, z: player.location.z + directionZ * this.entitySpacing});	
+            player.teleport({x: player.location.x - directionX * (this.entitySpacing * maxX), y: yPosition, z: player.location.z + directionZ * this.entitySpacing});
         }
-        player.teleport(this.savedLocation);
+        player.teleport(savedLocation);
+        player.setGameMode(savedGameMode);
     }
 
     getFogEntity() {
@@ -56,16 +61,20 @@ class MassParticleGenerator {
         return this.secondPosition;
     }
 
-    getSavedLocation() {
-        return this.savedLocation;
-    }
-
     getEntitySpacing() {
         return this.entitySpacing;
     }
 
     getMaxRadius() {
         return this.maxRadius;
+    }
+
+    getCellDelay() {
+        return this.cellDelay;
+    }
+
+    getColumnDelay() {
+        return this.columnDelay;
     }
 
     setFirstPosition(position) {
@@ -76,12 +85,20 @@ class MassParticleGenerator {
         this.secondPosition = position;
     }
 
-    setSavedLocation(position) {
-        this.savedLocation = position;
-    }
-
     setEntitySpacing(spacing) {
         this.entitySpacing = spacing;
+    }
+
+    setStop(stop) {
+        this.stop = stop;
+    }
+
+    setCellDelay(delay) {
+        this.cellDelay = delay;
+    }
+
+    setColumnDelay(delay) {
+        this.columnDelay = delay;
     }
 }
 

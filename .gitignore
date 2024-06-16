@@ -1,0 +1,12 @@
+level.dat
+level.dat_old
+levelname.txt
+world_behavior_pack_history.json
+world_behavior_packs.json
+world_resource_pack_history.json
+world_resource_packs.json
+world_icon.jpeg
+db/
+behavior_packs/BP_EA/node_modules
+behavior_packs/BetterEnd_BP
+resource_packs/BetterEnd_RP

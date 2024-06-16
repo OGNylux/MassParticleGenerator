@@ -1,1 +1,0 @@
-execute as @a[scores={final_fight=0..622}] run function cine/final_fight

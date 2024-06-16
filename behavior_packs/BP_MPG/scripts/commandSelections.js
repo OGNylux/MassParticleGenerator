@@ -1,4 +1,3 @@
-import { world } from "@minecraft/server"
 import { massParticleGenerator } from "./data";
 import { isBetween } from "./utilityFunctions";
 
@@ -21,7 +20,7 @@ function command(player, mode, event, func, radius = 0) {
     if(mode === "radius") radiusSelection(player, radius, event, func);
     else if(mode === "area") areaSelection(player, event, func);
     else if(mode === "column") columnSelection(player, event, func);
-    else world.sendMessage("No selection method given");
+    else player.sendMessage("No selection method given");
 }
 
 function radiusSelection(player, radius, event, func, box = false) {
@@ -38,7 +37,7 @@ function radiusSelection(player, radius, event, func, box = false) {
             if(box) {if(isBetween(entity.location, firstPosition, secondPosition)) func(entity, event);}
             else func(entity, event); 
         });
-    } else world.sendMessage("Radius too large!");
+    } else player.sendMessage("Radius too large!");
 }
 
 function areaSelection(player, event, func) {
@@ -49,7 +48,6 @@ function areaSelection(player, event, func) {
     const tpSpacingX = Math.floor(Math.abs(secondPosition.x - firstPosition.x) / entitySpacing);
     const tpSpacingZ = Math.floor(Math.abs(secondPosition.z - firstPosition.z) / entitySpacing);
 
-	massParticleGenerator.setSavedLocation(player.location);
     massParticleGenerator.mpg_algorithm(player, tpSpacingX, tpSpacingZ, () => { radiusSelection(player, 160, event, func, true) });
 }
 

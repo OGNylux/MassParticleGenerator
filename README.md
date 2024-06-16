@@ -31,8 +31,8 @@ MPG is a script that allows you to generate particles in a mass amount.
 
 1. Clone this repository and copy the folders in the resource and behavior packs folders of the world. The folder structure should look like this
 ```
-\minecraftWorlds\MCL-Test\behavior_packs\BP_MPG
-\minecraftWorlds\MCL-Test\resource_packs\RP_MPG
+\minecraftWorlds\MPG-Test\behavior_packs\BP_MPG
+\minecraftWorlds\MPG-Test\resource_packs\RP_MPG
 ```
 3. Activate the behavior and resource pack in their respective tabs
 4. Set the xyz dimensions and start the algorithm

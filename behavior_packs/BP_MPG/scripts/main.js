@@ -1,7 +1,7 @@
 import { system } from "@minecraft/server"
 import { massParticleGenerator } from "./data";
 import { commandSelection, teleportSelection, despawnSelection } from "./commandSelections";
-import { setFirstPosition, setSecondPosition, setup, move } from "./commands";
+import { setFirstPosition, setSecondPosition, setup, move, help } from "./commands";
 import { drawCubes, drawCube } from "./utilityFunctions";
 
 let commands = {};
@@ -19,6 +19,7 @@ commands['pb:drawCube'] = function(player, message) { drawCube(player, message);
 commands['pb:stop'] = function(player, message) { massParticleGenerator.setStop(true); };
 commands['pb:delay'] = function(player, message) { massParticleGenerator.setCellDelay(message); player.sendMessage(`Cell delay set to ${massParticleGenerator.getCellDelay()}`); };
 commands['pb:columnDelay'] = function(player, message) { massParticleGenerator.setColumnDelay(message); player.sendMessage(`Column delay set to ${massParticleGenerator.getColumnDelay()}`); };
+commands['pb:help'] = function(player, message) { help(player); };
 
 system.afterEvents.scriptEventReceive.subscribe((event) => {
 	const {id, sourceEntity, message} = event;

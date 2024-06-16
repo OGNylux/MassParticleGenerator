@@ -1,6 +1,24 @@
 import { massParticleGenerator } from "./data";
 import { spawnEntity } from "./utilityFunctions";
 
+export function help(player) {
+	player.sendMessage("======= HELP =======");
+	player.sendMessage("pos1 [x y z] - sets the first position [optional]");
+	player.sendMessage("pos2 [x y z] - sets the second position [optional]");
+	player.sendMessage("fill - starts the particle fill");
+	player.sendMessage("show {hitbox/outline} {area/column/radius {radius}} - shows the hitbox or outline of the selected area");
+	player.sendMessage("show {hitbox/outline} {area/column/radius {radius}} - hides the hitbox or outline of the selected area");
+	player.sendMessage("set {particle} {area/column/radius {radius}} - sets the particle of the selected area");
+	player.sendMessage("remove {particle} {area/column/radius {radius}} - removes the particle of the selected area");
+	player.sendMessage("move {relative/absolute} {coordinates} {area/column/radius {radius}} - moves the particles in the selected area");
+	player.sendMessage("despawn {area/column/radius {radius}} - despawns the particles in the selected area");
+    player.sendMessage("drawCube {radius} - draws a cube around the player with the given radius");
+    player.sendMessage("stop - stops the particle fill");
+    player.sendMessage("delay {delay} - sets the cell delay");
+    player.sendMessage("columnDelay {delay} - sets the column delay");
+	player.sendMessage("help - shows this message");
+}
+
 export function setFirstPosition(player, message) { 
 	if(message) {
 		const substrings = message.split(' ');
